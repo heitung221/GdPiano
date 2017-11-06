@@ -4,21 +4,34 @@
 <head>
     <meta charset="utf-8">
     <title>GdPiano - To play music funnier and easier than ever before</title>
+	
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
     <style>
+		#content {
+			width: 800px;
+			margin: auto;
+			}
         body {
-			font-size: 28px;
-            font-family: Helvetica, Calibri;
+			font-size: 22px;
+			
             }
 			
 		p {
 			width: 500;
 			word-wrap: break-word;
 			}
+		form {
+			width: 300px;
+			margin: left;
+			}
     </style>
 </head>
 	
 <body>
-
+<div id="content">
 	
 	<p> Welcome to GdPiano, a simple and fun music instrument that play with relative pitch.<br>
 	</p>
@@ -53,6 +66,9 @@
 		</form>
 		<br>
 	<p>	Press A to play Do, press S to play Re, press D to play Mi, and etc. <br> Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. </p>
+	
+</div>
+	
 	<audio id="1" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C2.mp3" autostart="false" ></audio>
 	<audio id="2" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Db2.mp3" autostart="false" ></audio>
 	<audio id="3" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/D2.mp3" autostart="false" ></audio>
@@ -152,16 +168,14 @@ $(document).ready(function(){
 		
 		
 		var keysNumber = [];
+		var whichKey = [];
 		for (var i = 0; i < 36; i++){
 			keysNumber[i] = Dol;
+			whichKey[i] = String(keysNumber[i]);
 			//console.log(keysNumber[i]);
 			Dol++;
 			}
-		var whichKey = [];
-		for (i = 0; i < 36; i++){
-			whichKey[i] = String(keysNumber[i]);
-			//console.log(whichKey[i]);
-			}
+		
 		
 		//Note: whichKey[0] = Dol, whichKey[1] = Dil, whichKey[13] = Do, etc...
 		
@@ -217,8 +231,7 @@ $(document).ready(function(){
 				}
 		
 		};
-		
-		
+	
 	});
 	
 </script>
