@@ -150,8 +150,10 @@ $(document).ready(function(){
 		
 		var selectkey = $("#selectKey").val();
 		var key = Number(selectkey);
+		$(this).blur();
 		var selectTone = $("#selectTone").val();
 		var Tone = Number(selectTone);
+		$(this).blur();
 		
 		//assign key and tone
 		if (Tone == 1){
@@ -184,10 +186,11 @@ $(document).ready(function(){
 				var au = document.getElementById(whichKey[inputNumber]);
 				au.load();	
 				au.play();
+				
 			}
 		
 		
-		//console.log(evt.keyCode);
+		console.log(evt.keyCode);
 		if (evt.shiftKey == false){
 				if (evt.keyCode == 81)	play(0);
 				if (evt.keyCode == 87)	play(2);
