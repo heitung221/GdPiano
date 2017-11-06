@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-        <meta charset="utf-8">
-        <title>GdPlay - To play music funnier and easier than ever before</title>
-        <style>
-            body {
-				font-size: 28px;
-                font-family: Helvetica, Calibri;
+<head>
+    <meta charset="utf-8">
+    <title>GdPiano - To play music funnier and easier than ever before</title>
+    <style>
+        body {
+			font-size: 28px;
+            font-family: Helvetica, Calibri;
             }
 			
-			p {
-				width: 500;
-				word-wrap: break-word;
-}
-        </style>
-    </head>
+		p {
+			width: 500;
+			word-wrap: break-word;
+			}
+    </style>
+</head>
 	
-    <body>
+<body>
 
 	
-	<p> Welcome to GdPlay, a simple and fun music instrument that play with relative pitch.<br>
+	<p> Welcome to GdPiano, a simple and fun music instrument that play with relative pitch.<br>
 	</p>
 	
-	Select Key:
+	
 		<form>
+			Select Key:
 			<select id="selectKey">
-				
 				<option value = "0">C Major / A Minor</option>
 				<option value = "1">C# Major / A# Minor</option>
 				<option value = "2">D Major / B Minor</option>
@@ -42,10 +42,10 @@
 			</select>
 		</form>
 		<br>
-	Select Tone Range:
+	
 		<form>
-			<select id="selectTone">
-				
+			Select Tone Range:
+			<select id="selectTone">	
 				<option value = "1">Middle</option>
 				<option value = "2">High</option>
 				<option value = "3">Low</option>
@@ -115,19 +115,19 @@
 	<audio id="60" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/B6.mp3" autostart="false" ></audio>
 	<audio id="61" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C7.mp3" autostart="false" ></audio>
 	
-	</body>
+</body>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
-	<script>
+<script>
 	
-	$(document).ready(function(){
+$(document).ready(function(){
 		
 	$(document).keydown(keyPush);
-		$("#selectKey").change(keyPush);
-		$("#selectTone").change(keyPush);	
+	$("#selectKey").change(keyPush);
+	$("#selectTone").change(keyPush);	
 		
-		function keyPush(evt){
+	function keyPush(evt){
 		
 		var Do = 25;		
 		var Tone = 1;
@@ -136,7 +136,7 @@
 		var key = Number(selectkey);
 		var selectTone = $("#selectTone").val();
 		var Tone = Number(selectTone);
-		console.log(key);
+		
 		//assign key and tone
 		if (Tone == 1){
 					Dol = key + 13;
@@ -149,274 +149,79 @@
 		if (Tone == 3){
 					Dol = key + 1;
 				}
-		console.log(Dol);
-		/*
+		
+		
 		var keysNumber = [];
-		for (var i = 1; i <= 36; i++){
+		for (var i = 0; i < 36; i++){
 			keysNumber[i] = Dol;
+			//console.log(keysNumber[i]);
 			Dol++;
 			}
-		Dol = Dol - 36;
-		var keys [];
-		for (i = 1; i <= 36; i++){
-			keys[i] = String(keysNumber[i]);
+		var whichKey = [];
+		for (i = 0; i < 36; i++){
+			whichKey[i] = String(keysNumber[i]);
+			//console.log(whichKey[i]);
 			}
 		
-		console.log(keysNumber[1]);
-		*/
-		var Do = Dol + 12;
-		var Di = Do + 1;
-		var Re = Do + 2;
-		var Ri = Do + 3;
-		var Mi = Do + 4;
-		var Fa = Do + 5;
-		var Fi = Do + 6;
-		var So = Do + 7;
-		var Si = Do + 8;
-		var La = Do + 9;
-		var Li = Do + 10;
-		var Ti = Do + 11;
+		//Note: whichKey[0] = Dol, whichKey[1] = Dil, whichKey[13] = Do, etc...
 		
-		//var Dol = Do - 12;
-		var Dil = Do - 11;
-		var Rel = Do - 10;
-		var Ril = Do - 9;
-		var Mil = Do - 8;
-		var Fal = Do - 7;
-		var Fil = Do - 6;
-		var Sol = Do - 5;
-		var Sil = Do - 4;
-		var Lal = Do - 3;
-		var Lil = Do - 2;
-		var Til = Do - 1;
 		
-		var Doh = Do + 12;
-		var Dih = Do + 13;
-		var Reh = Do + 14;
-		var Rih = Do + 15;
-		var Mih = Do + 16;
-		var Fah = Do + 17;
-		var Fih = Do + 18;
-		var Soh = Do + 19;
-		var Sih = Do + 20;
-		var Lah = Do + 21;
-		var Lih = Do + 22;
-		var Tih = Do + 23;
-		
-			if (event.shiftKey == false){
-	
-				switch(evt.keyCode){
-					case 81:
-						var au = document.getElementById(Dol);
-						au.load();	
-						au.play();
-						break;
-					case 87:
-						var au = document.getElementById(Rel);
-						au.load();	
-						au.play();
-						break;
-					case 69:
-						var au = document.getElementById(Mil);
-						au.load();	
-						au.play();
-						break;
-					case 82:
-						var au = document.getElementById(Fal);
-						au.load();	
-						au.play();
-						break;
-					case 84:
-						var au = document.getElementById(Sol);
-						au.load();	
-						au.play();
-						break;
-					case 89:
-						var au = document.getElementById(Lal);
-						au.load();	
-						au.play();
-						break;
-					case 85:
-						var au = document.getElementById(Til);
-						au.load();	
-						au.play();
-						break;
-					
-					case 65:
-						var au = document.getElementById(Do);
-						au.load();	
-						au.play();
-						break;
-					case 83:
-						var au = document.getElementById(Re);
-						au.load();	
-						au.play();
-						break;
-					case 68:
-						var au = document.getElementById(Mi);
-						au.load();	
-						au.play();
-						break;
-					case 70:
-						var au = document.getElementById(Fa);
-						au.load();	
-						au.play();
-						break;
-					case 71:
-						var au = document.getElementById(So);
-						au.load();	
-						au.play();
-						break;
-					case 72:
-						var au = document.getElementById(La);
-						au.load();	
-						au.play();
-						break;
-					case 74:
-						var au = document.getElementById(Ti);
-						au.load();	
-						au.play();
-						break;
-					
-					
-					case 90:
-						var au = document.getElementById(Doh);
-						au.load();	
-						au.play();
-						break;
-					case 88:
-						var au = document.getElementById(Reh);
-						au.load();	
-						au.play();
-						break;
-					case 67:
-						var au = document.getElementById(Mih);
-						au.load();	
-						au.play();
-						break;
-					case 86:
-						var au = document.getElementById(Fah);
-						au.load();	
-						au.play();
-						break;
-					case 66:
-						var au = document.getElementById(Soh);
-						au.load();	
-						au.play();
-						break;
-					case 78:
-						var au = document.getElementById(Lah);
-						au.load();	
-						au.play();
-						break;
-					case 77:
-						var au = document.getElementById(Tih);
-						au.load();	
-						au.play();
-						break;
-					
-						
-					}
-				}
-		
-			if (event.shiftKey == true) {
-			
-				switch(evt.keyCode){
-					case 81:
-						var au = document.getElementById(Dil);
-						au.load();	
-						au.play();
-						break;
-					case 87:
-						var au = document.getElementById(Ril);
-						au.load();	
-						au.play();
-						break;
-						
-					case 82:
-						var au = document.getElementById(Fil);
-						au.load();	
-						au.play();
-						break;
-					case 84:
-						var au = document.getElementById(Sil);
-						au.load();	
-						au.play();
-						break;
-					case 89:
-						var au = document.getElementById(Lil);
-						au.load();	
-						au.play();
-						break;
-				
-				
-					case 65:
-						var au = document.getElementById(Di);
-						au.load();	
-						au.play();
-						break;
-					case 83:
-						var au = document.getElementById(Ri);
-						au.load();	
-						au.play();
-						break;
-					
-					case 70:
-						var au = document.getElementById(Fi);
-						au.load();	
-						au.play();
-						break;
-					case 71:
-						var au = document.getElementById(Si);
-						au.load();	
-						au.play();
-						break;
-					case 72:
-						var au = document.getElementById(Li);
-						au.load();	
-						au.play();
-						break;
-					
-					
-					
-					
-					case 90:
-						var au = document.getElementById(Dih);
-						au.load();	
-						au.play();
-						break;
-					case 88:
-						var au = document.getElementById(Rih);
-						au.load();	
-						au.play();
-						break;
-					
-					case 86:
-						var au = document.getElementById(Fih);
-						au.load();	
-						au.play();
-						break;
-					case 66:
-						var au = document.getElementById(Sih);
-						au.load();	
-						au.play();
-						break;
-					case 78:
-						var au = document.getElementById(Lih);
-						au.load();	
-						au.play();
-						break;
-					
-				}
-			
+		function play(inputNumber){
+				var au = document.getElementById(whichKey[inputNumber]);
+				au.load();	
+				au.play();
 			}
+		
+		
+		//console.log(evt.keyCode);
+		if (evt.shiftKey == false){
+				if (evt.keyCode == 81)	play(0);
+				if (evt.keyCode == 87)	play(2);
+				if (evt.keyCode == 69)	play(4);
+				if (evt.keyCode == 82)	play(5);
+				if (evt.keyCode == 84)	play(7);
+				if (evt.keyCode == 89)	play(9);
+				if (evt.keyCode == 85)	play(11);
+				if (evt.keyCode == 65)	play(12);
+				if (evt.keyCode == 83)	play(14);
+				if (evt.keyCode == 68)	play(16);
+				if (evt.keyCode == 70)	play(17);
+				if (evt.keyCode == 71)	play(19);
+				if (evt.keyCode == 72)	play(21);
+				if (evt.keyCode == 74)	play(23);
+				if (evt.keyCode == 90)	play(24);
+				if (evt.keyCode == 88)	play(26);
+				if (evt.keyCode == 67)	play(28);
+				if (evt.keyCode == 86)	play(29);
+				if (evt.keyCode == 66)	play(31);
+				if (evt.keyCode == 78)	play(33);
+				if (evt.keyCode == 77)	play(35);
+				}
+		if (evt.shiftKey == true){
+				if (evt.keyCode == 81)	play(1);
+				if (evt.keyCode == 87)	play(3);
+				if (evt.keyCode == 82)	play(6);
+				if (evt.keyCode == 84)	play(8);
+				if (evt.keyCode == 89)	play(10);
+				if (evt.keyCode == 65)	play(13);
+				if (evt.keyCode == 83)	play(15);
+				if (evt.keyCode == 70)	play(18);
+				if (evt.keyCode == 71)	play(20);
+				if (evt.keyCode == 72)	play(22);
+				if (evt.keyCode == 90)	play(25);
+				if (evt.keyCode == 88)	play(27);
+				if (evt.keyCode == 86)	play(30);
+				if (evt.keyCode == 66)	play(32);
+				if (evt.keyCode == 78)	play(34);
+				if (evt.keyCode == 77)	play(36);
+				}
 		
 		};
 		
 		
 	});
 	
-	</script>
+</script>
 	
 	
 </html>
