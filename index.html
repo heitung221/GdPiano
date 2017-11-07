@@ -35,7 +35,7 @@
 	
 <body>
 <div id="content">
-	
+	<br>
 	<p> Welcome to GdPiano, a simple and fun music instrument that play with relative pitch.<br>
 	</p>
 	
@@ -60,18 +60,20 @@
 		<br>
 	
 		<form>
-			Select Tone Range:
+			Select Key Layout:
 			<select id="selectTone">	
-				<option id = "Tone1" value = "1">Middle</option>
-				<option id = "Tone2" value = "2">High</option>
-				<option id = "Tone3" value = "3">Low</option>
+				<option id = "Tone1" value = "1">Middle Tone Range</option>
+				<option id = "Tone2" value = "2">High Tone Range</option>
+				<option id = "Tone3" value = "3">Low Tone Range</option>
+				<option id = "ChordMode" value = "4">Chord Mode</option>
 			</select>
 		</form>
 		<br>
-	<p>	Press A to play Do, press S to play Re, press D to play Mi, and etc. <br> Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. </p>
+	<p id="tutorial">Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. </p>
 	<br><br><br>
 	<button id="NormalMode">Normal Mode</button>
 	<button id="JyutKukMode">粵曲模式</button>
+	
 </div>
 	
 	<audio id="1" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C2.mp3" autostart="false" ></audio>
@@ -153,19 +155,19 @@ $(document).ready(function(){
 		var selectkey = $("#selectKey").val();
 		var key = Number(selectkey);
 		var selectTone = $("#selectTone").val();
-		var Tone = Number(selectTone);
+		var Layout = Number(selectTone);
 		$(this).blur();
 		
 		//assign key and tone
-		if (Tone == 1){
+		if (Layout == 1 || 4){
 					Dol = key + 13;
 				}
 			
-		if (Tone == 2){
+		if (Layout == 2){
 					Dol = key + 25;
 				}
 			
-		if (Tone == 3){
+		if (Layout == 3){
 					Dol = key + 1;
 				}
 		
@@ -187,10 +189,10 @@ $(document).ready(function(){
 				var au = document.getElementById(whichKey[inputNumber]);
 				au.load();	
 				au.play();
-				
 			}
-		
-		if (evt.shiftKey == false){
+		console.log(Layout);	
+		if (Layout != 4){
+			if (evt.shiftKey == false){
 				if (evt.keyCode == 81)	play(0);
 				if (evt.keyCode == 87)	play(2);
 				if (evt.keyCode == 69)	play(4);
@@ -213,7 +215,7 @@ $(document).ready(function(){
 				if (evt.keyCode == 78)	play(33);
 				if (evt.keyCode == 77)	play(35);
 				}
-		if (evt.shiftKey == true){
+			if (evt.shiftKey == true){
 				if (evt.keyCode == 81)	play(1);
 				if (evt.keyCode == 87)	play(3);
 				if (evt.keyCode == 82)	play(6);
@@ -231,6 +233,31 @@ $(document).ready(function(){
 				if (evt.keyCode == 78)	play(34);
 				if (evt.keyCode == 77)	play(36);
 				}
+				$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc.");
+			}
+			
+		if (Layout == 4){
+				if (evt.keyCode == 65)	play(12);
+				if (evt.keyCode == 87)	play(13);
+				if (evt.keyCode == 83)	play(14);
+				if (evt.keyCode == 69)	play(15);
+				if (evt.keyCode == 68)	play(16);
+				if (evt.keyCode == 70)	play(17);
+				if (evt.keyCode == 84)	play(18);
+				if (evt.keyCode == 71)	play(19);
+				if (evt.keyCode == 89)	play(20);
+				if (evt.keyCode == 72)	play(21);
+				if (evt.keyCode == 85)	play(22);
+				if (evt.keyCode == 74)	play(23);
+				if (evt.keyCode == 75)	play(24);
+				if (evt.keyCode == 79)	play(25);
+				if (evt.keyCode == 76)	play(26);
+				if (evt.keyCode == 80)	play(27);
+				if (evt.keyCode == 186)	play(28);
+				if (evt.keyCode == 222)	play(29);
+				$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc.");
+			}
+		
 		
 		};
 	
