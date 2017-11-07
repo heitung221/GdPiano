@@ -149,7 +149,16 @@ $(document).ready(function(){
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
 	$("#selectTone").change(keyPush);	
-		
+	
+	//copy for solving keydown many times
+	$(document).keyup(function(e) { 
+		allowed = true;
+		});
+	$(document).focus(function(e) { 
+		allowed = true;
+		});
+	//end of copy for solving keydown many times
+	
 	function keyPush(evt){
 	
 		var selectkey = $("#selectKey").val();
@@ -158,6 +167,7 @@ $(document).ready(function(){
 		var Layout = Number(selectTone);
 		$(this).blur();
 		
+
 		//assign key and tone
 		if (Layout == 1 || 4){
 					Dol = key + 13;
@@ -184,7 +194,15 @@ $(document).ready(function(){
 		
 		//Note: whichKey[0] = Dol, whichKey[1] = Dil, whichKey[13] = Do, etc...
 		
+			//copy for solving keydown many times
+			if (event.repeat != undefined) {
+				allowed = !event.repeat;
+				}
+			if (!allowed) return;
+			allowed = false;
+			//end of copy for solving keydown many times	
 		
+		//start of pressing key
 		function play(inputNumber){
 				var au = document.getElementById(whichKey[inputNumber]);
 				au.load();	
@@ -257,7 +275,7 @@ $(document).ready(function(){
 				if (evt.keyCode == 222)	play(29);
 				$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc.");
 			}
-		
+		//end of pressing key
 		
 		};
 	
