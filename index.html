@@ -17,7 +17,14 @@
 		#playedWhatKey {
 			font-size: 36px;
 			font-weight: bold;
-			color: black;
+			color: indigo;
+			text-align: center;
+			font-family: Roboto, Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			}
+		#playedAbsoluteKey {
+			font-size: 36px;
+			font-weight: bold;
+			color: indianred;
 			text-align: center;
 			font-family: Roboto, Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
@@ -76,7 +83,7 @@
 				<option id = "ATone3" value = 13>Low Tone Range (Auto-play chord)</option> !-->
 			</select>
 		</form>
-		
+		<div id="playedAbsoluteKey"></div>
 		<div id="playedWhatKey"></div>
 		
 		
@@ -191,9 +198,8 @@ $(document).ready(function(){
 		var Layout = Number(selectTone);
 		var selectmode = $("#selectMode").val();
 		$(this).blur();
-		console.log(selectkey);
 		
-		console.log(selectmode);
+		
 		if (selectmode == "NormalMode"){
 			$("#textOfSelectKey").text("Select Key");
 			$("#Key0").text("C Major / A Minor");
@@ -241,15 +247,17 @@ $(document).ready(function(){
 				var au = Dol + inputNumber;
 				var sound = new Audio(sources[au]);
 				sound.play();
+				console.log(au);
 				if (selectmode == "NormalMode"){
 					var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
+					var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B"];
 					}
 				else if (selectmode == "JyutKukMode"){
 					var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
+					var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘"];
 					}
-				
+			$("#playedAbsoluteKey").text(playedAbsKey[au]);	
 			$("#playedWhatKey").text(solFaName[inputNumber]);	
-				
 			}
 			
 		if (Layout == 1 || Layout == 2 || Layout == 3){
@@ -322,8 +330,7 @@ $(document).ready(function(){
 				if (evt.keyCode == 222)	play(29);
 				$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc.");
 			}
-		
-		console.log(evt.keyCode);
+			
 		//end of pressing key
 		
 		
