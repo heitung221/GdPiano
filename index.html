@@ -14,6 +14,13 @@
 			width: 800px;
 			margin: auto;
 			}
+		#playedWhatKey {
+			font-size: 36px;
+			font-weight: bold;
+			color: black;
+			text-align: center;
+			font-family: Roboto, Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			}
         body {
 			font-size: 22px;
             }	
@@ -55,8 +62,8 @@
 				<option id = "Key11" value = "11">B Major / G# Minor</option>
 			</select>
 		</form>
-		<br>
-	
+			
+			
 		<form>
 			Select Key Layout:
 			<select id="selectTone">	
@@ -69,12 +76,20 @@
 				<option id = "ATone3" value = 13>Low Tone Range (Auto-play chord)</option> !-->
 			</select>
 		</form>
+		
+		<div id="playedWhatKey"></div>
+		
+		
 		<br>
 	<p id="tutorial">Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. </p>
 	<br><br><br>
-	<button id="NormalMode">Normal Mode</button>
-	<button id="JyutKukMode">粵曲模式</button>
 	
+		<form>	
+			<select id="selectMode">	
+				<option value = "NormalMode">Normal Mode</option>
+				<option value = "JyutKukMode">粵曲模式</option>
+			</select>
+		</form>
 </div>
 
 	<audio id="1" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C2.mp3" autostart="false" ></audio>
@@ -154,7 +169,7 @@ $(document).ready(function(){
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
 	$("#selectTone").change(keyPush);	
-	
+	$("#selectMode").change(keyPush);
 	//copy for solving keydown many times
 	$(document).keyup(function(e) {
 		allowed = true;
@@ -165,13 +180,38 @@ $(document).ready(function(){
 	//end of copy for solving keydown many times
 	
 	
+	
+	
+	
 	function keyPush(evt){
 	
 		var selectkey = $("#selectKey").val();
 		var key = Number(selectkey);
 		var selectTone = $("#selectTone").val();
 		var Layout = Number(selectTone);
+		var selectmode = $("#selectMode").val();
 		$(this).blur();
+		console.log(selectkey);
+		
+		console.log(selectmode);
+		if (selectmode == "NormalMode"){
+			$("#textOfSelectKey").text("Select Key");
+			$("#Key0").text("C Major / A Minor");
+			$("#Key5").text("F Major / D Minor");
+			$("#Key7").text("G Major / E Minor");
+			$("#Key8").text("G# Major / F Minor");
+			$("#Key10").text("A# Major / G Minor");	
+		}
+		if (selectmode == "JyutKukMode"){
+			$("#textOfSelectKey").text("調式");
+			$("#Key0").text("正線 / 合尺線");
+			$("#Key5").text("尺五線");
+			$("#Key7").text("反線 / 上六線");
+			$("#Key8").text("乙反線");
+			$("#Key10").text("士工線");
+		}
+		
+		
 		
 		//assign key and tone
 		if (Layout == 1 || Layout == 4 || Layout == 11){
@@ -200,7 +240,16 @@ $(document).ready(function(){
 		function play(inputNumber){
 				var au = Dol + inputNumber;
 				var sound = new Audio(sources[au]);
-				sound.play();	
+				sound.play();
+				if (selectmode == "NormalMode"){
+					var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
+					}
+				else if (selectmode == "JyutKukMode"){
+					var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
+					}
+				
+			$("#playedWhatKey").text(solFaName[inputNumber]);	
+				
 			}
 			
 		if (Layout == 1 || Layout == 2 || Layout == 3){
@@ -231,7 +280,7 @@ $(document).ready(function(){
 					sound.play();
 					}
 				}
-			if (evt.shiftKey == true){
+			else {
 				if (evt.keyCode == 81)	play(1);
 				if (evt.keyCode == 87)	play(3);
 				if (evt.keyCode == 82)	play(6);
@@ -252,7 +301,7 @@ $(document).ready(function(){
 				$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc.");
 			}
 			
-		if (Layout == 4){
+		else if (Layout == 4){
 				if (evt.keyCode == 65)	play(12);
 				if (evt.keyCode == 87)	play(13);
 				if (evt.keyCode == 83)	play(14);
@@ -277,30 +326,14 @@ $(document).ready(function(){
 		console.log(evt.keyCode);
 		//end of pressing key
 		
+		
+		
+		
+		
+		
 		};
 	
 	});
 	
-</script>
-
-<script>
-	$("#NormalMode").click(function(){
-		$("#textOfSelectKey").text("Select Key");
-		$("#Key0").text("C Major / A Minor");
-		$("#Key5").text("F Major / D Minor");
-		$("#Key7").text("G Major / E Minor");
-		$("#Key8").text("G# Major / F Minor");
-		$("#Key10").text("A# Major / G Minor");	
-	});
-	
-	$("#JyutKukMode").click(function(){
-		$("#textOfSelectKey").text("調式");
-		$("#Key0").text("正線 / 合尺線");
-		$("#Key5").text("尺五線");
-		$("#Key7").text("反線 / 上六線");
-		$("#Key8").text("乙反線");
-		$("#Key10").text("士工線");	
-	});
 </script>	
-	
 </html>
