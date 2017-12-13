@@ -244,13 +244,7 @@ $(document).ready(function(){
 				}
 		
 		
-		//Play Chord by pressing button
-		var chordToPlay = $(this).val();
-		console.log(chordToPlay);
-		for (var k = 0; k < chord.chords[chordToPlay].pitchNo.length; k++){
-			play(chord.chords[chordToPlay].pitchNo[k] + 12);
-			}
-		//End of Play Chord by pressing button
+		
 		
 			
 				function play(inputNumber){
@@ -369,10 +363,12 @@ $(document).ready(function(){
 			
 		//end of pressing key
 		
-		
-		
-		
-		
+		//Play Chord by pressing button
+		var chordToPlay = $(this).val();
+		for (var k = 0; k < chord.chords[chordToPlay].pitchNo.length; k++){
+			play(chord.chords[chordToPlay].pitchNo[k] + 12);
+			}
+		//End of Play Chord by pressing button
 		
 		};
 	
