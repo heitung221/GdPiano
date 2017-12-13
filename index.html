@@ -88,9 +88,10 @@
 		
 		
 		<br>
-	<p id="tutorial">Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. </p>
-	<br><br><br>
+	<p id="tutorial">Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p>
+	<p id="tutorial2">Use Piano-like Layout Mode to enjoy playing chords!</p>
 	
+	<br><br>
 		<form>	
 			<select id="selectMode">	
 				<option value = "NormalMode">Normal Mode</option>
@@ -169,28 +170,25 @@
 	
 $(document).ready(function(){
 	
-	var allowed = true;
-	
+	var keyEnabledArray = Array(222).fill(true);
+
 	var sources = ["notes/C2.mp3", "notes/Db2.mp3", "notes/D2.mp3", "notes/Eb2.mp3", "notes/E2.mp3", "notes/F2.mp3", "notes/Gb2.mp3", "notes/G2.mp3", "notes/Ab2.mp3", "notes/A2.mp3", "notes/Bb2.mp3", "notes/B2.mp3", "notes/C3.mp3", "notes/Db3.mp3", "notes/D3.mp3", "notes/Eb3.mp3", "notes/E3.mp3", "notes/F3.mp3", "notes/Gb3.mp3", "notes/G3.mp3", "notes/Ab3.mp3", "notes/A3.mp3", "notes/Bb3.mp3", "notes/B3.mp3", "notes/C4.mp3", "notes/Db4.mp3", "notes/D4.mp3", "notes/Eb4.mp3", "notes/E4.mp3", "notes/F4.mp3", "notes/Gb4.mp3", "notes/G4.mp3", "notes/Ab4.mp3", "notes/A4.mp3", "notes/Bb4.mp3", "notes/B4.mp3", "notes/C5.mp3", "notes/Db5.mp3", "notes/D5.mp3", "notes/Eb5.mp3", "notes/E5.mp3", "notes/F5.mp3", "notes/Gb5.mp3", "notes/G5.mp3", "notes/Ab5.mp3", "notes/A5.mp3", "notes/Bb5.mp3", "notes/B5.mp3", "notes/C6.mp3", "notes/Db6.mp3", "notes/D6.mp3", "notes/Eb6.mp3", "notes/E6.mp3", "notes/F6.mp3", "notes/Gb6.mp3", "notes/G6.mp3", "notes/Ab6.mp3", "notes/A6.mp3", "notes/Bb6.mp3", "notes/B6.mp3", "notes/C7.mp3"];
 	
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
 	$("#selectTone").change(keyPush);	
 	$("#selectMode").change(keyPush);
-	//copy for solving keydown many times
-	$(document).keyup(function(e) {
-		allowed = true;
-		});
-	$(document).focus(function(e) { 
-		allowed = true;
-		});
-	//end of copy for solving keydown many times
 	
+	document.onkeydown = keyPush;
 	
-	
+	document.onkeyup = function(evt){
+		// enable the specific key on keyup
+		keyEnabledArray[evt.keyCode] = true;
+		}; 
 	
 	
 	function keyPush(evt){
+	
 	
 		var selectkey = $("#selectKey").val();
 		var key = Number(selectkey);
@@ -201,7 +199,7 @@ $(document).ready(function(){
 		
 		
 		if (selectmode == "NormalMode"){
-			$("#textOfSelectKey").text("Select Key");
+			$("#textOfSelectKey").text("Select Key:");
 			$("#Key0").text("C Major / A Minor");
 			$("#Key5").text("F Major / D Minor");
 			$("#Key7").text("G Major / E Minor");
@@ -209,7 +207,7 @@ $(document).ready(function(){
 			$("#Key10").text("A# Major / G Minor");	
 		}
 		if (selectmode == "JyutKukMode"){
-			$("#textOfSelectKey").text("調式");
+			$("#textOfSelectKey").text("調式：");
 			$("#Key0").text("正線 / 合尺線");
 			$("#Key5").text("尺五線");
 			$("#Key7").text("反線 / 上六線");
@@ -232,103 +230,100 @@ $(document).ready(function(){
 					Dol = key + 1 - 1;
 				}
 		
-		//copy for solving keydown many times
-		if (evt.repeat != undefined) {
-			allowed = !evt.repeat;
-			}
-		if (!allowed) return;
-		allowed = false;
-		//end of copy for solving keydown many times	
-		//reference: https://stackoverflow.com/questions/7686197/how-can-i-avoid-autorepeated-keydown-events-in-javascript
 		
 		
 		//start of pressing key
-		function play(inputNumber){
-				var au = Dol + inputNumber;
-				var sound = new Audio(sources[au]);
-				sound.play();
-				console.log(au);
-				if (selectmode == "NormalMode"){
-					var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
-					var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B"];
-					}
-				else if (selectmode == "JyutKukMode"){
-					var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
-					var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘"];
-					}
-			$("#playedAbsoluteKey").text(playedAbsKey[au]);	
-			$("#playedWhatKey").text(solFaName[inputNumber]);	
-			}
+			// disable the key until key release
+		if(keyEnabledArray[evt.keyCode]) {
+			keyEnabledArray[evt.keyCode] = false;
 			
-		if (Layout == 1 || Layout == 2 || Layout == 3){
-			if (evt.shiftKey == false){
-				if (evt.keyCode == 81)	play(0);
-				if (evt.keyCode == 87)	play(2);
-				if (evt.keyCode == 69)	play(4);
-				if (evt.keyCode == 82)	play(5);
-				if (evt.keyCode == 84)	play(7);
-				if (evt.keyCode == 89)	play(9);
-				if (evt.keyCode == 85)	play(11);
-				if (evt.keyCode == 65)	play(12);
-				if (evt.keyCode == 83)	play(14);
-				if (evt.keyCode == 68)	play(16);
-				if (evt.keyCode == 70)	play(17);
-				if (evt.keyCode == 71)	play(19);
-				if (evt.keyCode == 72)	play(21);
-				if (evt.keyCode == 74)	play(23);
-				if (evt.keyCode == 90)	play(24);
-				if (evt.keyCode == 88)	play(26);
-				if (evt.keyCode == 67)	play(28);
-				if (evt.keyCode == 86)	play(29);
-				if (evt.keyCode == 66)	play(31);
-				if (evt.keyCode == 78)	play(33);
-				if (evt.keyCode == 77)	play(35);
-				if (evt.keyCode == 17)	{
-					var sound = new Audio("notes/C4.mp3");
+				function play(inputNumber){
+					var au = Dol + inputNumber;
+					var sound = new Audio(sources[au]);
 					sound.play();
+					//console.log(au);
+					if (selectmode == "NormalMode"){
+						var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
+						var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C"];
+						}
+					else if (selectmode == "JyutKukMode"){
+						var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
+						var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘"];
+						}
+				$("#playedAbsoluteKey").text(playedAbsKey[au]);	
+				$("#playedWhatKey").text(solFaName[inputNumber]);	
+				}
+				
+			if (Layout == 1 || Layout == 2 || Layout == 3){
+				if (evt.shiftKey == false){
+					if (evt.keyCode == 81)	play(0);
+					if (evt.keyCode == 87)	play(2);
+					if (evt.keyCode == 69)	play(4);
+					if (evt.keyCode == 82)	play(5);
+					if (evt.keyCode == 84)	play(7);
+					if (evt.keyCode == 89)	play(9);
+					if (evt.keyCode == 85)	play(11);
+					if (evt.keyCode == 65)	play(12);
+					if (evt.keyCode == 83)	play(14);
+					if (evt.keyCode == 68)	play(16);
+					if (evt.keyCode == 70)	play(17);
+					if (evt.keyCode == 71)	play(19);
+					if (evt.keyCode == 72)	play(21);
+					if (evt.keyCode == 74)	play(23);
+					if (evt.keyCode == 90)	play(24);
+					if (evt.keyCode == 88)	play(26);
+					if (evt.keyCode == 67)	play(28);
+					if (evt.keyCode == 86)	play(29);
+					if (evt.keyCode == 66)	play(31);
+					if (evt.keyCode == 78)	play(33);
+					if (evt.keyCode == 77)	play(35);
+					if (evt.keyCode == 17)	{
+						var sound = new Audio("notes/C4.mp3");
+						sound.play();
+						}
 					}
+				else {
+					if (evt.keyCode == 81)	play(1);
+					if (evt.keyCode == 87)	play(3);
+					if (evt.keyCode == 82)	play(6);
+					if (evt.keyCode == 84)	play(8);
+					if (evt.keyCode == 89)	play(10);
+					if (evt.keyCode == 65)	play(13);
+					if (evt.keyCode == 83)	play(15);
+					if (evt.keyCode == 70)	play(18);
+					if (evt.keyCode == 71)	play(20);
+					if (evt.keyCode == 72)	play(22);
+					if (evt.keyCode == 90)	play(25);
+					if (evt.keyCode == 88)	play(27);
+					if (evt.keyCode == 86)	play(30);
+					if (evt.keyCode == 66)	play(32);
+					if (evt.keyCode == 78)	play(34);
+					if (evt.keyCode == 77)	play(36);
+					}
+					$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.");
 				}
-			else {
-				if (evt.keyCode == 81)	play(1);
-				if (evt.keyCode == 87)	play(3);
-				if (evt.keyCode == 82)	play(6);
-				if (evt.keyCode == 84)	play(8);
-				if (evt.keyCode == 89)	play(10);
-				if (evt.keyCode == 65)	play(13);
-				if (evt.keyCode == 83)	play(15);
-				if (evt.keyCode == 70)	play(18);
-				if (evt.keyCode == 71)	play(20);
-				if (evt.keyCode == 72)	play(22);
-				if (evt.keyCode == 90)	play(25);
-				if (evt.keyCode == 88)	play(27);
-				if (evt.keyCode == 86)	play(30);
-				if (evt.keyCode == 66)	play(32);
-				if (evt.keyCode == 78)	play(34);
-				if (evt.keyCode == 77)	play(36);
+				
+			else if (Layout == 4){
+					if (evt.keyCode == 65)	play(12);
+					if (evt.keyCode == 87)	play(13);
+					if (evt.keyCode == 83)	play(14);
+					if (evt.keyCode == 69)	play(15);
+					if (evt.keyCode == 68)	play(16);
+					if (evt.keyCode == 70)	play(17);
+					if (evt.keyCode == 84)	play(18);
+					if (evt.keyCode == 71)	play(19);
+					if (evt.keyCode == 89)	play(20);
+					if (evt.keyCode == 72)	play(21);
+					if (evt.keyCode == 85)	play(22);
+					if (evt.keyCode == 74)	play(23);
+					if (evt.keyCode == 75)	play(24);
+					if (evt.keyCode == 79)	play(25);
+					if (evt.keyCode == 76)	play(26);
+					if (evt.keyCode == 80)	play(27);
+					if (evt.keyCode == 186)	play(28);
+					if (evt.keyCode == 222)	play(29);
+					$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc. You can always play middle C by pressing LCtrl.");
 				}
-				$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc.");
-			}
-			
-		else if (Layout == 4){
-				if (evt.keyCode == 65)	play(12);
-				if (evt.keyCode == 87)	play(13);
-				if (evt.keyCode == 83)	play(14);
-				if (evt.keyCode == 69)	play(15);
-				if (evt.keyCode == 68)	play(16);
-				if (evt.keyCode == 70)	play(17);
-				if (evt.keyCode == 84)	play(18);
-				if (evt.keyCode == 71)	play(19);
-				if (evt.keyCode == 89)	play(20);
-				if (evt.keyCode == 72)	play(21);
-				if (evt.keyCode == 85)	play(22);
-				if (evt.keyCode == 74)	play(23);
-				if (evt.keyCode == 75)	play(24);
-				if (evt.keyCode == 79)	play(25);
-				if (evt.keyCode == 76)	play(26);
-				if (evt.keyCode == 80)	play(27);
-				if (evt.keyCode == 186)	play(28);
-				if (evt.keyCode == 222)	play(29);
-				$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc.");
 			}
 			
 		//end of pressing key
@@ -340,7 +335,9 @@ $(document).ready(function(){
 		
 		};
 	
-	});
 	
+	
+	
+	});
 </script>	
 </html>
