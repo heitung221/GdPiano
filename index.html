@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
     <style>
 		#content {
-			width: 800px;
+			width: 900px;
 			margin: auto;
 			}
 		#playedWhatKey {
@@ -125,13 +125,14 @@ $(document).ready(function(){
 	
 	var chord = {
 		"chords": [
-		{"name": "Major triad", "notation": "-", "pitchs": ["Do", "Mi", "So"], "keys":["a", "d", "g"]},
-		{"name": "Augmented triad", "notation": "aug", "pitchs": ["Do", "Mi", "Si"], "keys":["a", "d", "y"]},
-		{"name": "Diminished triad", "notation": "dim", "pitchs": ["Do", "Ri", "Fi"], "keys":["a", "e", "t"]},
-		{"name": "Suspended 4th", "notation": "sus4", "pitchs": ["Do", "Fa", "So"], "keys":["a", "f", "g"]},
-		{"name": "Suspended 2nd", "notation": "sus2", "pitchs": ["Do", "Re", "So"], "keys":["a", "s", "g"]},
-		{"name": "Major 6th", "notation": "6", "pitchs": ["Do", "Mi", "So", "La"], "keys":["a", "d", "g", "h"]},
-		{"name": "Major 7th", "notation": "7", "pitchs": ["Do", "Mi", "So", "Ti"], "keys":["a", "d", "g", "j"]}
+		{"name": "Major triad", "notation": "-", "pitchs": ["Do", "Mi", "So"], "keys":["a", "d", "g"], "pitchNo":[0,4,7]},
+		{"name": "Augmented triad", "notation": "aug", "pitchs": ["Do", "Mi", "Si"], "keys":["a", "d", "y"], "pitchNo":[0,4,8]},
+		{"name": "Diminished triad", "notation": "dim", "pitchs": ["Do", "Ri", "Fi"], "keys":["a", "e", "t"], "pitchNo":[0,3,6]},
+		{"name": "Suspended 4th", "notation": "sus4", "pitchs": ["Do", "Fa", "So"], "keys":["a", "f", "g"], "pitchNo":[0,5,7]},
+		{"name": "Suspended 2nd", "notation": "sus2", "pitchs": ["Do", "Re", "So"], "keys":["a", "s", "g"], "pitchNo":[0,2,7]},
+		{"name": "Major 6th", "notation": "6", "pitchs": ["Do", "Mi", "So", "La"], "keys":["a", "d", "g", "h"], "pitchNo":[0,4,7,9]},
+		{"name": "Major 7th", "notation": "7", "pitchs": ["Do", "Mi", "So", "Ti"], "keys":["a", "d", "g", "j"], "pitchNo":[0,4,7,11]}
+		
 		]
 	}
 	
@@ -161,7 +162,8 @@ $(document).ready(function(){
 	});
 	
 	//Chord Tutorial Content
-	var chordContentFragments = "<table><tr><th>Chords</th><th>Symbol</th><th>Pitchs</th><th>Piano-like Layout Keys</th></tr>";
+	var chordContentFragments = "<table><tr><th>Chord</th><th>Notation</th><th>Pitchs</th><th>Piano-like Layout Keys</th><th>Play</th></tr>";
+	
 	var chordContent = document.getElementById("chordTutorial");
 	for (var i = 0; i < chord.chords.length; i++){
 		chordContentFragments += "<tr><td>" + chord.chords[i].name + "</td><td>" + chord.chords[i].notation + "</td>";
@@ -175,16 +177,22 @@ $(document).ready(function(){
 				chordContentFragments += chord.chords[i].keys[j] + " + ";
 				}
 			chordContentFragments += chord.chords[i].keys[chord.chords[i].keys.length - 1];
-		chordContentFragments += "</td></tr>";	
+		chordContentFragments += "</td>";
+		chordContentFragments += "<td><button class = \"playChord\" value = " + i + ">Play</button></td>"
+		chordContentFragments += "</tr>";
 		}
-		chordContentFragments += "</table>";
-		console.log(chordContentFragments);
+	chordContentFragments += "</table>";
+	
 	chordContent.innerHTML = chordContentFragments;
 	//End of Chord Tutorial Content	
 	
 	
+	$(".playChord").click(keyPush);
+	
+	
 	function keyPush(evt){
 	
+		
 	
 		var selectkey = $("#selectKey").val();
 		var key = Number(selectkey);
@@ -236,18 +244,19 @@ $(document).ready(function(){
 				}
 		
 		
+		//Play Chord by pressing button
+		var chordToPlay = $(this).val();
+		console.log(chordToPlay);
+		for (var k = 0; k < chord.chords[chordToPlay].pitchNo.length; k++){
+			play(chord.chords[chordToPlay].pitchNo[k] + 12);
+			}
+		//End of Play Chord by pressing button
 		
-		//start of pressing key
-			// disable the key until key release
-			//ref: https://stackoverflow.com/questions/6087959/
-		if (keyEnabledArray[evt.keyCode]) {
-			keyEnabledArray[evt.keyCode] = false;
 			
 				function play(inputNumber){
 					var au = Dol + inputNumber;
 					var sound = new Audio(sources[au]);
 					sound.play();
-					//console.log(au);
 					if (selectmode == "NormalMode"){
 						var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
 						var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C"];
@@ -259,7 +268,14 @@ $(document).ready(function(){
 				$("#playedAbsoluteKey").text(playedAbsKey[au]);	
 				$("#playedWhatKey").text(solFaName[inputNumber]);	
 				}
-				
+			
+			//start of pressing key
+			// disable the key until key release
+			//ref: https://stackoverflow.com/questions/6087959/
+		if (keyEnabledArray[evt.keyCode]) {
+			keyEnabledArray[evt.keyCode] = false;
+
+			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
 				if (evt.shiftKey == false){
 					if (evt.keyCode == 81)	play(0);
