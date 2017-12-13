@@ -28,6 +28,12 @@
 			text-align: center;
 			font-family: Roboto, Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
+		#chordTutorial {
+			display: none;
+			}
+		#note {
+			font-size: 16px;
+		}
         body {
 			font-size: 22px;
             }	
@@ -52,46 +58,50 @@
 	</p>
 	
 	
-		<form>
-			<div id="textOfSelectKey">Select Key:</div>
-			<select id="selectKey">
-				<option id = "Key0" value = "0">C Major / A Minor</option>
-				<option id = "Key1" value = "1">C# Major / A# Minor</option>
-				<option id = "Key2" value = "2">D Major / B Minor</option>
-				<option id = "Key3" value = "3">D# Major / C Minor</option>
-				<option id = "Key4" value = "4">E Major / C# Minor</option>
-				<option id = "Key5" value = "5">F Major / D Minor</option>
-				<option id = "Key6" value = "6">F# Major / D# Minor</option>
-				<option id = "Key7" value = "7">G Major / E Minor</option>
-				<option id = "Key8" value = "8">G# Major / F Minor</option>
-				<option id = "Key9" value = "9">A Major / F# Minor</option>
-				<option id = "Key10" value = "10">A# Major / G Minor</option>
-				<option id = "Key11" value = "11">B Major / G# Minor</option>
-			</select>
-		</form>
-			
-			
-		<form>
-			Select Key Layout:
-			<select id="selectTone">	
-				<option id = "Tone1" value = 1>Middle Tone Range</option>
-				<option id = "Tone2" value = 2>High Tone Range</option>
-				<option id = "Tone3" value = 3>Low Tone Range</option>
-				<option id = "ChordMode" value = 4>Piano-like Layout Mode</option>
-			<!--	<option id = "ATone1" value = 11>Middle Tone Range (Auto-play chord)</option>
-				<option id = "ATone2" value = 12>High Tone Range (Auto-play chord)</option>
-				<option id = "ATone3" value = 13>Low Tone Range (Auto-play chord)</option> !-->
-			</select>
-		</form>
-		<div id="playedAbsoluteKey"></div>
-		<div id="playedWhatKey"></div>
+	<form>
+		<div id="textOfSelectKey">Select Key:</div>
+		<select id="selectKey">
+			<option id = "Key0" value = "0">C Major / A Minor</option>
+			<option id = "Key1" value = "1">C# Major / A# Minor</option>
+			<option id = "Key2" value = "2">D Major / B Minor</option>
+			<option id = "Key3" value = "3">D# Major / C Minor</option>
+			<option id = "Key4" value = "4">E Major / C# Minor</option>
+			<option id = "Key5" value = "5">F Major / D Minor</option>
+			<option id = "Key6" value = "6">F# Major / D# Minor</option>
+			<option id = "Key7" value = "7">G Major / E Minor</option>
+			<option id = "Key8" value = "8">G# Major / F Minor</option>
+			<option id = "Key9" value = "9">A Major / F# Minor</option>
+			<option id = "Key10" value = "10">A# Major / G Minor</option>
+			<option id = "Key11" value = "11">B Major / G# Minor</option>
+		</select>
+	</form>
 		
 		
-		<br>
+	<form>
+		Select Key Layout:
+		<select id="selectTone">	
+			<option id = "Tone1" value = 1>Middle Tone Range</option>
+			<option id = "Tone2" value = 2>High Tone Range</option>
+			<option id = "Tone3" value = 3>Low Tone Range</option>
+			<option id = "PLM" value = 4>Piano-like Layout</option>
+		<!--	<option id = "PLm" value = 5>Piano-like Layout in Minor</option>
+			<option id = "ATone1" value = 11>Middle Tone Range (Auto-play chord)</option>
+			<option id = "ATone2" value = 12>High Tone Range (Auto-play chord)</option>
+			<option id = "ATone3" value = 13>Low Tone Range (Auto-play chord)</option> !-->
+		</select>
+	</form>
+	<div id="playedAbsoluteKey"></div>
+	<div id="playedWhatKey"></div>
+	<br>
+	<button id="chordButton">Show Chord Tutorial</button>
+	<div id="chordTutorial"></div>
+	<p id="note">Note: The chord names and symbols are used in popular music, which may be different in classical music. <p>
+	
+	<br><br>
 	<p id="tutorial">Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p>
 	<p id="tutorial2">Use Piano-like Layout Mode to enjoy playing chords!</p>
 	
-	<br><br>
+	<br><br><br>
 		<form>	
 			<select id="selectMode">	
 				<option value = "NormalMode">Normal Mode</option>
@@ -99,68 +109,6 @@
 			</select>
 		</form>
 </div>
-
-	<audio id="1" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C2.mp3" autostart="false" ></audio>
-	<audio id="2" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Db2.mp3" autostart="false" ></audio>
-	<audio id="3" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/D2.mp3" autostart="false" ></audio>
-	<audio id="4" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Eb2.mp3" autostart="false" ></audio>
-	<audio id="5" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/E2.mp3" autostart="false" ></audio>
-	<audio id="6" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/F2.mp3" autostart="false" ></audio>
-	<audio id="7" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Gb2.mp3" autostart="false" ></audio>
-	<audio id="8" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/G2.mp3" autostart="false" ></audio>
-	<audio id="9" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Ab2.mp3" autostart="false" ></audio>
-	<audio id="10" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/A2.mp3" autostart="false" ></audio>
-	<audio id="11" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Bb2.mp3" autostart="false" ></audio>
-	<audio id="12" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/B2.mp3" autostart="false" ></audio>
-	<audio id="13" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C3.mp3" autostart="false" ></audio>
-	<audio id="14" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Db3.mp3" autostart="false" ></audio>
-	<audio id="15" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/D3.mp3" autostart="false" ></audio>
-	<audio id="16" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Eb3.mp3" autostart="false" ></audio>
-	<audio id="17" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/E3.mp3" autostart="false" ></audio>
-	<audio id="18" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/F3.mp3" autostart="false" ></audio>
-	<audio id="19" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Gb3.mp3" autostart="false" ></audio>
-	<audio id="20" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/G3.mp3" autostart="false" ></audio>
-	<audio id="21" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Ab3.mp3" autostart="false" ></audio>
-	<audio id="22" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/A3.mp3" autostart="false" ></audio>
-	<audio id="23" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Bb3.mp3" autostart="false" ></audio>
-	<audio id="24" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/B3.mp3" autostart="false" ></audio>
-	<audio id="25" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C4.mp3" autostart="false" ></audio>
-	<audio id="26" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Db4.mp3" autostart="false" ></audio>
-	<audio id="27" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/D4.mp3" autostart="false" ></audio>
-	<audio id="28" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Eb4.mp3" autostart="false" ></audio>
-	<audio id="29" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/E4.mp3" autostart="false" ></audio>
-	<audio id="30" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/F4.mp3" autostart="false" ></audio>
-	<audio id="31" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Gb4.mp3" autostart="false" ></audio>
-	<audio id="32" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/G4.mp3" autostart="false" ></audio>
-	<audio id="33" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Ab4.mp3" autostart="false" ></audio>
-	<audio id="34" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/A4.mp3" autostart="false" ></audio>
-	<audio id="35" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Bb4.mp3" autostart="false" ></audio>
-	<audio id="36" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/B4.mp3" autostart="false" ></audio>
-	<audio id="37" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C5.mp3" autostart="false" ></audio>
-	<audio id="38" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Db5.mp3" autostart="false" ></audio>
-	<audio id="39" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/D5.mp3" autostart="false" ></audio>
-	<audio id="40" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Eb5.mp3" autostart="false" ></audio>
-	<audio id="41" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/E5.mp3" autostart="false" ></audio>
-	<audio id="42" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/F5.mp3" autostart="false" ></audio>
-	<audio id="43" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Gb5.mp3" autostart="false" ></audio>
-	<audio id="44" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/G5.mp3" autostart="false" ></audio>
-	<audio id="45" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Ab5.mp3" autostart="false" ></audio>
-	<audio id="46" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/A5.mp3" autostart="false" ></audio>
-	<audio id="47" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Bb5.mp3" autostart="false" ></audio>
-	<audio id="48" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/B5.mp3" autostart="false" ></audio>
-	<audio id="49" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C6.mp3" autostart="false" ></audio>
-	<audio id="50" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Db6.mp3" autostart="false" ></audio>
-	<audio id="51" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/D6.mp3" autostart="false" ></audio>
-	<audio id="52" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Eb6.mp3" autostart="false" ></audio>
-	<audio id="53" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/E6.mp3" autostart="false" ></audio>
-	<audio id="54" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/F6.mp3" autostart="false" ></audio>
-	<audio id="55" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Gb6.mp3" autostart="false" ></audio>
-	<audio id="56" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/G6.mp3" autostart="false" ></audio>
-	<audio id="57" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Ab6.mp3" autostart="false" ></audio>
-	<audio id="58" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/A6.mp3" autostart="false" ></audio>
-	<audio id="59" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/Bb6.mp3" autostart="false" ></audio>
-	<audio id="60" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/B6.mp3" autostart="false" ></audio>
-	<audio id="61" src="https://raw.githubusercontent.com/heitung221/GdPlay/master/notes/C7.mp3" autostart="false" ></audio>
 
 </body>
 
@@ -170,9 +118,22 @@
 	
 $(document).ready(function(){
 	
+	var isChordShown = false;
 	var keyEnabledArray = Array(222).fill(true);
 
 	var sources = ["notes/C2.mp3", "notes/Db2.mp3", "notes/D2.mp3", "notes/Eb2.mp3", "notes/E2.mp3", "notes/F2.mp3", "notes/Gb2.mp3", "notes/G2.mp3", "notes/Ab2.mp3", "notes/A2.mp3", "notes/Bb2.mp3", "notes/B2.mp3", "notes/C3.mp3", "notes/Db3.mp3", "notes/D3.mp3", "notes/Eb3.mp3", "notes/E3.mp3", "notes/F3.mp3", "notes/Gb3.mp3", "notes/G3.mp3", "notes/Ab3.mp3", "notes/A3.mp3", "notes/Bb3.mp3", "notes/B3.mp3", "notes/C4.mp3", "notes/Db4.mp3", "notes/D4.mp3", "notes/Eb4.mp3", "notes/E4.mp3", "notes/F4.mp3", "notes/Gb4.mp3", "notes/G4.mp3", "notes/Ab4.mp3", "notes/A4.mp3", "notes/Bb4.mp3", "notes/B4.mp3", "notes/C5.mp3", "notes/Db5.mp3", "notes/D5.mp3", "notes/Eb5.mp3", "notes/E5.mp3", "notes/F5.mp3", "notes/Gb5.mp3", "notes/G5.mp3", "notes/Ab5.mp3", "notes/A5.mp3", "notes/Bb5.mp3", "notes/B5.mp3", "notes/C6.mp3", "notes/Db6.mp3", "notes/D6.mp3", "notes/Eb6.mp3", "notes/E6.mp3", "notes/F6.mp3", "notes/Gb6.mp3", "notes/G6.mp3", "notes/Ab6.mp3", "notes/A6.mp3", "notes/Bb6.mp3", "notes/B6.mp3", "notes/C7.mp3"];
+	
+	var chord = {
+		"chords": [
+		{"name": "Major triad", "notation": "-", "pitchs": ["Do", "Mi", "So"], "keys":["a", "d", "g"]},
+		{"name": "Augmented triad", "notation": "aug", "pitchs": ["Do", "Mi", "Si"], "keys":["a", "d", "y"]},
+		{"name": "Diminished triad", "notation": "dim", "pitchs": ["Do", "Ri", "Fi"], "keys":["a", "e", "t"]},
+		{"name": "Suspended 4th", "notation": "sus4", "pitchs": ["Do", "Fa", "So"], "keys":["a", "f", "g"]},
+		{"name": "Suspended 2nd", "notation": "sus2", "pitchs": ["Do", "Re", "So"], "keys":["a", "s", "g"]},
+		{"name": "Major 6th", "notation": "6", "pitchs": ["Do", "Mi", "So", "La"], "keys":["a", "d", "g", "h"]},
+		{"name": "Major 7th", "notation": "7", "pitchs": ["Do", "Mi", "So", "Ti"], "keys":["a", "d", "g", "j"]}
+		]
+	}
 	
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
@@ -186,6 +147,41 @@ $(document).ready(function(){
 		keyEnabledArray[evt.keyCode] = true;
 		}; 
 	
+	$("#chordButton").click(function(){
+		
+		var showChordTutorial = document.getElementById("chordTutorial");
+		if (showChordTutorial.style.display === "block") {
+			showChordTutorial.style.display = "none";
+			$("#chordButton").text("Show Chord Tutorial");
+			} 
+		else {
+		showChordTutorial.style.display = "block";
+		$("#chordButton").text("Hide Chord Tutorial");
+		}
+	});
+	
+	//Chord Tutorial Content
+	var chordContentFragments = "<table><tr><th>Chords</th><th>Symbol</th><th>Pitchs</th><th>Piano-like Layout Keys</th></tr>";
+	var chordContent = document.getElementById("chordTutorial");
+	for (var i = 0; i < chord.chords.length; i++){
+		chordContentFragments += "<tr><td>" + chord.chords[i].name + "</td><td>" + chord.chords[i].notation + "</td>";
+		chordContentFragments += "<td>";
+			for (var j = 0; j < chord.chords[i].pitchs.length - 1; j++){
+				chordContentFragments += chord.chords[i].pitchs[j] + ", ";	
+				}
+			chordContentFragments += chord.chords[i].pitchs[chord.chords[i].pitchs.length - 1];
+			chordContentFragments += "</td><td>";
+			for (var j = 0; j < chord.chords[i].keys.length - 1; j++){
+				chordContentFragments += chord.chords[i].keys[j] + " + ";
+				}
+			chordContentFragments += chord.chords[i].keys[chord.chords[i].keys.length - 1];
+		chordContentFragments += "</td></tr>";	
+		}
+		chordContentFragments += "</table>";
+		console.log(chordContentFragments);
+	chordContent.innerHTML = chordContentFragments;
+	//End of Chord Tutorial Content	
+	
 	
 	function keyPush(evt){
 	
@@ -197,7 +193,18 @@ $(document).ready(function(){
 		var selectmode = $("#selectMode").val();
 		$(this).blur();
 		
-		
+		//Description
+		if (Layout == 1 || Layout == 2 || Layout == 3){
+			$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.");
+			}
+		else if (Layout == 4){
+			$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc.");
+			}
+		else if (Layout == 5){
+			$("#tutorial").text("A is La, S is Ti, D is Do, F is Re, G is Mi, and etc. W is the key between La and Ti (Li), R is the key between Do and Re (Di), T is the key between Re and Mi (Ri) , and etc.");
+			}
+			
+		//Mode related changes	
 		if (selectmode == "NormalMode"){
 			$("#textOfSelectKey").text("Select Key:");
 			$("#Key0").text("C Major / A Minor");
@@ -215,10 +222,8 @@ $(document).ready(function(){
 			$("#Key10").text("士工線");
 		}
 		
-		
-		
-		//assign key and tone
-		if (Layout == 1 || Layout == 4 || Layout == 11){
+		//Assign key and tone
+		if (Layout == 1 || Layout == 4 || Layout == 5 || Layout == 11){
 					Dol = key + 13 - 1;
 				}
 			
@@ -234,7 +239,8 @@ $(document).ready(function(){
 		
 		//start of pressing key
 			// disable the key until key release
-		if(keyEnabledArray[evt.keyCode]) {
+			//ref: https://stackoverflow.com/questions/6087959/
+		if (keyEnabledArray[evt.keyCode]) {
 			keyEnabledArray[evt.keyCode] = false;
 			
 				function play(inputNumber){
@@ -300,7 +306,7 @@ $(document).ready(function(){
 					if (evt.keyCode == 78)	play(34);
 					if (evt.keyCode == 77)	play(36);
 					}
-					$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.");
+					
 				}
 				
 			else if (Layout == 4){
@@ -322,7 +328,26 @@ $(document).ready(function(){
 					if (evt.keyCode == 80)	play(27);
 					if (evt.keyCode == 186)	play(28);
 					if (evt.keyCode == 222)	play(29);
-					$("#tutorial").text("A is Do, S is Re, D is Mi, F is Fa, G is So, and etc. W is the key between Do and Re (Di), E is the key between Re and Mi (Ri), and etc. You can always play middle C by pressing LCtrl.");
+				}
+			else if (Layout == 5){
+					if (evt.keyCode == 65)	play(9);
+					if (evt.keyCode == 87)	play(10);
+					if (evt.keyCode == 83)	play(11);
+					if (evt.keyCode == 68)	play(12);
+					if (evt.keyCode == 82)	play(13);
+					if (evt.keyCode == 70)	play(14);
+					if (evt.keyCode == 84)	play(15);
+					if (evt.keyCode == 71)	play(16);
+					if (evt.keyCode == 72)	play(17);
+					if (evt.keyCode == 85)	play(18);
+					if (evt.keyCode == 74)	play(19);
+					if (evt.keyCode == 73)	play(20);
+					if (evt.keyCode == 75)	play(21);
+					if (evt.keyCode == 79)	play(22);
+					if (evt.keyCode == 76)	play(23);
+					if (evt.keyCode == 186)	play(24);
+					if (evt.keyCode == 219)	play(25);
+					if (evt.keyCode == 222)	play(26);
 				}
 			}
 			
