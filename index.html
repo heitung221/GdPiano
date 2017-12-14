@@ -148,6 +148,16 @@ $(document).ready(function(){
 		keyEnabledArray[evt.keyCode] = true;
 		}; 
 	
+	//Initial Play Once
+	for (var i = 0; i < sources.length; i++){
+		var initialPlay = new Audio(sources[i]);
+		initialPlay.volume = 0;
+		initialPlay.play();
+	}
+	
+	
+	
+	
 	$("#chordButton").click(function(){
 		
 		var showChordTutorial = document.getElementById("chordTutorial");
