@@ -9,7 +9,16 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+	
     <style>
+		@font-face {
+			font-family: "Signika";
+			src: url(Signika.ttf) format("truetype");
+			}
+		@font-face {
+			font-family: "Signika-Semibold";
+			src: url(Signika-Semibold.ttf) format("truetype");
+			}
 		#content {
 			width: 900px;
 			margin: auto;
@@ -19,14 +28,14 @@
 			font-weight: bold;
 			color: indigo;
 			text-align: center;
-			font-family: Roboto, Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			font-family: "Signika-Semibold", Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
 		#playedAbsoluteKey {
 			font-size: 36px;
 			font-weight: bold;
 			color: indianred;
 			text-align: center;
-			font-family: Roboto, Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			font-family: "Signika-Semibold", Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
 		#chordTutorial {
 			display: none;
@@ -36,6 +45,7 @@
 		}
         body {
 			font-size: 22px;
+			font-family: "Signika", "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
             }	
 		p {
 			width: 500;
@@ -48,6 +58,9 @@
 		button {
 			font-size: 14px;
 			}
+		select {
+			font-family: "Signika", "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+		}
     </style>
 </head>
 	
@@ -126,7 +139,7 @@ $(document).ready(function(){
 	
 	var keyPiano = ["a","w","s","e","d","f","t","g","y","h","u","j","k","o","l","p",";","\'"];
 	
-	var chord = chords; //read from chord.jsonp
+	var chord = chords; //read from chord.jsonp ref:https://stackoverflow.com/questions/6711002
 	
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
