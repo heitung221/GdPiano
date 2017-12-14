@@ -1,0 +1,21 @@
+
+chords = [
+	{"name": "Major triad", "notation": "-", "pitchNo":[0,4,7]},
+	{"name": "Minor triad", "notation": "m", "pitchNo":[0,3,7]},
+	{"name": "Augmented triad", "notation": "aug", "pitchNo":[0,4,8]},
+	{"name": "Diminished triad", "notation": "dim", "pitchNo":[0,3,6]},
+	{"name": "Suspended 4th", "notation": "sus4", "pitchNo":[0,5,7]},
+	{"name": "Suspended 2nd", "notation": "sus2", "pitchNo":[0,2,7]},
+	{"name": "Major 6th", "notation": "6", "pitchNo":[0,4,7,9]},
+	{"name": "Minor 6th", "notation": "m6", "pitchNo":[0,3,7,9]},
+	{"name": "Major 7th", "notation": "M7", "pitchNo":[0,4,7,11]},
+	{"name": "Dominant 7th", "notation": "7", "pitchNo":[0,4,7,10]},
+	{"name": "Minor 7th", "notation": "m7", "pitchNo":[0,3,7,10]},
+	{"name": "Augmented 7th", "notation": "aug7", "pitchNo":[0,4,8,10]},
+	{"name": "Diminished 7th", "notation": "dim7", "pitchNo":[0,3,6,9]},
+	{"name": "Half diminished 7th", "notation": "ø", "pitchNo":[0,3,6,10]},
+	{"name": "Minor-major 7th", "notation": "mM7", "pitchNo":[0,3,7,11]},
+	{"name": "Augmented major 7th", "notation": "aug maj7", "pitchNo":[0,4,8,11]},
+	{"name": "7th flat 5", "notation": "7♭5", "pitchNo":[0,4,6,10]}
+	//{"name": "", "notation": "", "pitchNo":[]}
+];

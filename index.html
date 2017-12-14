@@ -93,7 +93,7 @@
 	<div id="playedAbsoluteKey"></div>
 	<div id="playedWhatKey"></div>
 	<br>
-	<button id="chordButton">Show Chord Tutorial</button>
+	<button id="chordButton">Show Chords Table</button>
 	<div id="chordTutorial"></div>
 	<p id="note">Note: The chord names and symbols are used in popular music, which may be different in classical music. <p>
 	
@@ -113,28 +113,20 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
+<script src="chord.jsonp"></script>	
 <script>
 	
 $(document).ready(function(){
-	
-	var isChordShown = false;
+
 	var keyEnabledArray = Array(222).fill(true);
 
 	var sources = ["notes/C2.mp3", "notes/Db2.mp3", "notes/D2.mp3", "notes/Eb2.mp3", "notes/E2.mp3", "notes/F2.mp3", "notes/Gb2.mp3", "notes/G2.mp3", "notes/Ab2.mp3", "notes/A2.mp3", "notes/Bb2.mp3", "notes/B2.mp3", "notes/C3.mp3", "notes/Db3.mp3", "notes/D3.mp3", "notes/Eb3.mp3", "notes/E3.mp3", "notes/F3.mp3", "notes/Gb3.mp3", "notes/G3.mp3", "notes/Ab3.mp3", "notes/A3.mp3", "notes/Bb3.mp3", "notes/B3.mp3", "notes/C4.mp3", "notes/Db4.mp3", "notes/D4.mp3", "notes/Eb4.mp3", "notes/E4.mp3", "notes/F4.mp3", "notes/Gb4.mp3", "notes/G4.mp3", "notes/Ab4.mp3", "notes/A4.mp3", "notes/Bb4.mp3", "notes/B4.mp3", "notes/C5.mp3", "notes/Db5.mp3", "notes/D5.mp3", "notes/Eb5.mp3", "notes/E5.mp3", "notes/F5.mp3", "notes/Gb5.mp3", "notes/G5.mp3", "notes/Ab5.mp3", "notes/A5.mp3", "notes/Bb5.mp3", "notes/B5.mp3", "notes/C6.mp3", "notes/Db6.mp3", "notes/D6.mp3", "notes/Eb6.mp3", "notes/E6.mp3", "notes/F6.mp3", "notes/Gb6.mp3", "notes/G6.mp3", "notes/Ab6.mp3", "notes/A6.mp3", "notes/Bb6.mp3", "notes/B6.mp3", "notes/C7.mp3"];
 	
-	var chord = {
-		"chords": [
-		{"name": "Major triad", "notation": "-", "pitchs": ["Do", "Mi", "So"], "keys":["a", "d", "g"], "pitchNo":[0,4,7]},
-		{"name": "Augmented triad", "notation": "aug", "pitchs": ["Do", "Mi", "Si"], "keys":["a", "d", "y"], "pitchNo":[0,4,8]},
-		{"name": "Diminished triad", "notation": "dim", "pitchs": ["Do", "Ri", "Fi"], "keys":["a", "e", "t"], "pitchNo":[0,3,6]},
-		{"name": "Suspended 4th", "notation": "sus4", "pitchs": ["Do", "Fa", "So"], "keys":["a", "f", "g"], "pitchNo":[0,5,7]},
-		{"name": "Suspended 2nd", "notation": "sus2", "pitchs": ["Do", "Re", "So"], "keys":["a", "s", "g"], "pitchNo":[0,2,7]},
-		{"name": "Major 6th", "notation": "6", "pitchs": ["Do", "Mi", "So", "La"], "keys":["a", "d", "g", "h"], "pitchNo":[0,4,7,9]},
-		{"name": "Major 7th", "notation": "7", "pitchs": ["Do", "Mi", "So", "Ti"], "keys":["a", "d", "g", "j"], "pitchNo":[0,4,7,11]}
-		
-		]
-	}
+	var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
+	
+	var keyPiano = ["a","w","s","e","d","f","t","g","y","h","u","j","k","o","l","p",";","\'"];
+	
+	var chord = chords; //read from chord.jsonp
 	
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
@@ -155,19 +147,16 @@ $(document).ready(function(){
 		initialPlay.play();
 	}
 	
-	
-	
-	
 	$("#chordButton").click(function(){
 		
 		var showChordTutorial = document.getElementById("chordTutorial");
 		if (showChordTutorial.style.display === "block") {
 			showChordTutorial.style.display = "none";
-			$("#chordButton").text("Show Chord Tutorial");
+			$("#chordButton").text("Show Chords Table");
 			} 
 		else {
 		showChordTutorial.style.display = "block";
-		$("#chordButton").text("Hide Chord Tutorial");
+		$("#chordButton").text("Hide Chords Table");
 		}
 	});
 	
@@ -175,18 +164,18 @@ $(document).ready(function(){
 	var chordContentFragments = "<table><tr><th>Chord</th><th>Notation</th><th>Pitchs</th><th>Piano-like Layout Keys</th><th>Play</th></tr>";
 	
 	var chordContent = document.getElementById("chordTutorial");
-	for (var i = 0; i < chord.chords.length; i++){
-		chordContentFragments += "<tr><td>" + chord.chords[i].name + "</td><td>" + chord.chords[i].notation + "</td>";
+	for (var i = 0; i < chord.length; i++){
+		chordContentFragments += "<tr><td>" + chord[i].name + "</td><td>" + chord[i].notation + "</td>";
 		chordContentFragments += "<td>";
-			for (var j = 0; j < chord.chords[i].pitchs.length - 1; j++){
-				chordContentFragments += chord.chords[i].pitchs[j] + ", ";	
+			for (var j = 0; j < chord[i].pitchNo.length - 1; j++){
+				chordContentFragments += solFaName[chord[i].pitchNo[j]] + ", ";	
 				}
-			chordContentFragments += chord.chords[i].pitchs[chord.chords[i].pitchs.length - 1];
+			chordContentFragments += solFaName[chord[i].pitchNo[chord[i].pitchNo.length - 1]];
 			chordContentFragments += "</td><td>";
-			for (var j = 0; j < chord.chords[i].keys.length - 1; j++){
-				chordContentFragments += chord.chords[i].keys[j] + " + ";
+			for (var j = 0; j < chord[i].pitchNo.length - 1; j++){
+				chordContentFragments += keyPiano[chord[i].pitchNo[j]] + " + ";
 				}
-			chordContentFragments += chord.chords[i].keys[chord.chords[i].keys.length - 1];
+			chordContentFragments += keyPiano[chord[i].pitchNo[chord[i].pitchNo.length - 1]];
 		chordContentFragments += "</td>";
 		chordContentFragments += "<td><button class = \"playChord\" value = " + i + ">Play</button></td>"
 		chordContentFragments += "</tr>";
@@ -199,10 +188,7 @@ $(document).ready(function(){
 	
 	$(".playChord").click(keyPush);
 	
-	
 	function keyPush(evt){
-	
-		
 	
 		var selectkey = $("#selectKey").val();
 		var key = Number(selectkey);
@@ -254,9 +240,6 @@ $(document).ready(function(){
 				}
 		
 		
-		
-		
-			
 				function play(inputNumber){
 					var au = Dol + inputNumber;
 					var sound = new Audio(sources[au]);
@@ -377,16 +360,12 @@ $(document).ready(function(){
 		if (evt.type == "click"){
 			var chordToPlay = $(this).val();
 			console.log(chordToPlay);
-			for (var k = 0; k < chord.chords[chordToPlay].pitchNo.length; k++){
-				play(chord.chords[chordToPlay].pitchNo[k] + 12);
+			for (var k = 0; k < chord[chordToPlay].pitchNo.length; k++){
+				play(chord[chordToPlay].pitchNo[k] + 12);
 				}
 			}
 		//End of Play Chord by pressing button
-		
 		};
-	
-	
-	
 	
 	});
 </script>	
