@@ -51,14 +51,12 @@
 			width: 500;
 			word-wrap: break-word;
 			}
-		form {
-			width: 300px;
-			margin: left;
-			}
 		button {
 			font-size: 14px;
 			}
 		select {
+			width: 275px;
+			margin: left;
 			font-family: "Signika", "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 		}
     </style>
@@ -75,23 +73,23 @@
 		<div id="textOfSelectKey">Select Key:</div>
 		<select id="selectKey">
 			<option id = "Key0" value = "0">C Major / A Minor</option>
-			<option id = "Key1" value = "1">C# Major / A# Minor</option>
-			<option id = "Key2" value = "2">D Major / B Minor</option>
-			<option id = "Key3" value = "3">D# Major / C Minor</option>
-			<option id = "Key4" value = "4">E Major / C# Minor</option>
-			<option id = "Key5" value = "5">F Major / D Minor</option>
-			<option id = "Key6" value = "6">F# Major / D# Minor</option>
 			<option id = "Key7" value = "7">G Major / E Minor</option>
-			<option id = "Key8" value = "8">G# Major / F Minor</option>
+			<option id = "Key2" value = "2">D Major / B Minor</option>
 			<option id = "Key9" value = "9">A Major / F# Minor</option>
-			<option id = "Key10" value = "10">A# Major / G Minor</option>
+			<option id = "Key4" value = "4">E Major / C# Minor</option>
 			<option id = "Key11" value = "11">B Major / G# Minor</option>
+			<option id = "Key6" value = "6">F# Major / D# Minor</option>
+			<option id = "Key1" value = "1">C# Major / A# Minor</option>
+			<option id = "Key8" value = "8">G# Major / F Minor</option>
+			<option id = "Key3" value = "3">D# Major / C Minor</option>
+			<option id = "Key10" value = "10">A# Major / G Minor</option>
+			<option id = "Key5" value = "5">F Major / D Minor</option>
 		</select>
 	</form>
 		
 		
 	<form>
-		Select Key Layout:
+		<div id="selecyKeyLayout">Select Key Layout:</div>
 		<select id="selectTone">	
 			<option id = "Tone1" value = 1>Middle Tone Range</option>
 			<option id = "Tone2" value = 2>High Tone Range</option>
@@ -107,6 +105,7 @@
 	<div id="playedWhatKey"></div>
 	<br>
 	<button id="chordButton">Show Chords Table</button>
+	
 	<div id="chordTutorial"></div>
 	<p id="note">Note: The chord names and symbols are used in popular music, which may be different in classical music. <p>
 	
@@ -146,6 +145,7 @@ $(document).ready(function(){
 	$("#selectTone").change(keyPush);	
 	$("#selectMode").change(keyPush);
 	
+	
 	document.onkeydown = keyPush;
 	
 	document.onkeyup = function(evt){
@@ -160,12 +160,15 @@ $(document).ready(function(){
 		initialPlay.play();
 	}
 	
+	
+	
 	$("#chordButton").click(function(){
 		
 		var showChordTutorial = document.getElementById("chordTutorial");
 		if (showChordTutorial.style.display === "block") {
 			showChordTutorial.style.display = "none";
 			$("#chordButton").text("Show Chords Table");
+			
 			} 
 		else {
 		showChordTutorial.style.display = "block";
@@ -173,31 +176,44 @@ $(document).ready(function(){
 		}
 	});
 	
-	//Chord Tutorial Content
-	var chordContentFragments = "<table><tr><th>Chord</th><th>Notation</th><th>Pitchs</th><th>Piano-like Layout Keys</th><th>Play</th></tr>";
-	
+	//Initial Chord Tutorial
 	var chordContent = document.getElementById("chordTutorial");
+	var chordContentFragments;
+	
+	chordContentFragments = "<table><thead><tr><th>Chord</th><th>Notation</th><th>Pitchs</th><th>Piano-like Layout Keys</th><th>Play</th></tr></thead><tbody>";
 	for (var i = 0; i < chord.length; i++){
-		chordContentFragments += "<tr><td>" + chord[i].name + "</td><td>" + chord[i].notation + "</td>";
-		chordContentFragments += "<td>";
-			for (var j = 0; j < chord[i].pitchNo.length - 1; j++){
-				chordContentFragments += solFaName[chord[i].pitchNo[j]] + ", ";	
+			chordContentFragments += "<tr><td>" + chord[i].name + "</td><td>" + chord[i].notation + "</td>";
+			chordContentFragments += "<td>";
+				for (var j = 0; j < chord[i].pitchNo.length - 1; j++){
+					chordContentFragments += solFaName[chord[i].pitchNo[j]] + ", ";	
+					}
+				chordContentFragments += solFaName[chord[i].pitchNo[chord[i].pitchNo.length - 1]];
+				chordContentFragments += "</td><td>";
+				
+				var isKeyNA = false;
+				for (var j = 0; j < chord[i].pitchNo.length; j++){
+					if (keyPiano[chord[i].pitchNo[j]] == undefined) {
+						isKeyNA = true;
+						}
 				}
-			chordContentFragments += solFaName[chord[i].pitchNo[chord[i].pitchNo.length - 1]];
-			chordContentFragments += "</td><td>";
-			for (var j = 0; j < chord[i].pitchNo.length - 1; j++){
-				chordContentFragments += keyPiano[chord[i].pitchNo[j]] + " + ";
+				
+				if (isKeyNA == false){
+					for (var j = 0; j < chord[i].pitchNo.length - 1; j++){
+						chordContentFragments += keyPiano[chord[i].pitchNo[j]] + " + ";
+						}
+					chordContentFragments += keyPiano[chord[i].pitchNo[chord[i].pitchNo.length - 1]];
 				}
-			chordContentFragments += keyPiano[chord[i].pitchNo[chord[i].pitchNo.length - 1]];
-		chordContentFragments += "</td>";
-		chordContentFragments += "<td><button class = \"playChord\" value = " + i + ">Play</button></td>"
-		chordContentFragments += "</tr>";
-		}
-	chordContentFragments += "</table>";
-	
-	chordContent.innerHTML = chordContentFragments;
-	//End of Chord Tutorial Content	
-	
+				else {
+					chordContentFragments += "N/A";
+				}
+			
+			chordContentFragments += "</td>";
+			chordContentFragments += "<td><button class = \"playChord\" value = " + i + ">Play</button></td>";
+			chordContentFragments += "</tr>";
+			}
+		chordContentFragments += "</tbody></table>";
+		chordContent.innerHTML = chordContentFragments;
+	//End of Initial Chord Tutorial
 	
 	$(".playChord").click(keyPush);
 	
@@ -209,7 +225,7 @@ $(document).ready(function(){
 		var Layout = Number(selectTone);
 		var selectmode = $("#selectMode").val();
 		$(this).blur();
-		
+		console.log(key);
 		//Description
 		if (Layout == 1 || Layout == 2 || Layout == 3){
 			$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.");
@@ -274,6 +290,8 @@ $(document).ready(function(){
 			//ref: https://stackoverflow.com/questions/6087959/
 		if (keyEnabledArray[evt.keyCode]) {
 			keyEnabledArray[evt.keyCode] = false;
+			
+			
 
 			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
