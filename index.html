@@ -19,6 +19,55 @@
 			font-family: "Signika-Semibold";
 			src: url(Signika-Semibold.ttf) format("truetype");
 			}
+		.button-low {
+			background-color: MediumVioletRed;
+			border-color: MediumVioletRed;
+			text-transform: none;
+			font-size: 16px;
+			width: 100px;
+			padding: 0 0;
+		}
+		.button-lowi {
+			background-color: LimeGreen;
+			border-color: LimeGreen;
+			text-transform: none;
+			font-size: 16px;
+			width: 60px;
+			padding: 0 0;
+		}
+		.button-mid {
+			background-color: PaleVioletRed;
+			border-color: PaleVioletRed;
+			text-transform: none;
+			font-size: 16px;
+			width: 100px;
+			padding: 0 0;
+		}
+		.button-midi {
+			background-color: tan;
+			border-color: tan;
+			text-transform: none;
+			font-size: 16px;
+			width: 60px;
+			padding: 0 0;
+		}
+		.button-high {
+			background-color: Pink;
+			border-color: Pink;
+			text-transform: none;
+			font-size: 16px;
+			width: 100px;
+			padding: 0 0;
+		}
+		.button-highi {
+			background-color: PaleGreen;
+			border-color: PaleGreen;
+			text-transform: none;
+			font-size: 16px;
+			width: 60px;
+			padding: 0 0;
+		}
+		
 		#content {
 			width: 1024px;
 			margin-left: auto;
@@ -30,14 +79,14 @@
 			font-weight: bold;
 			color: indigo;
 			text-align: center;
-			font-family: "Signika-Semibold", Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			font-family: "Signika-Semibold", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
 		#playedAbsoluteKey {
 			font-size: 36px;
 			font-weight: bold;
 			color: indianred;
 			text-align: center;
-			font-family: "Signika-Semibold", Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			font-family: "Signika-Semibold", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
 		#chordTutorial {
 			font-size:18px;
@@ -48,7 +97,7 @@
 		}
         body {
 			font-size: 22px;
-			font-family: "Signika", "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			font-family: "Signika", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
             }	
 		p {
 			width: 500;
@@ -60,7 +109,7 @@
 		select {
 			width: 275px;
 			margin: left;
-			font-family: "Signika", "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			font-family: "Signika", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 		}
     </style>
 </head>
@@ -103,10 +152,17 @@
 			<option id = "ATone3" value = 13>Low Tone Range (Auto-play chord)</option> !-->
 		</select>
 	</form>
+	<br>
+	<button class = "button-outline" id="showKeyButton">Show Keys Layout</button><br>
+	<button class="button-low" id = "kb0" value = 0>Do</button><button class="button-lowi" id = "kb1" value = 1>Di</button><button class="button-low" id = "kb2" value = 2>Re</button><button class="button-lowi" id = "kb3" value = 3>Ri</button><button class="button-low" id = "kb4" value = 4>Mi</button><button class="button-low" id = "kb5" value = 5>Fa</button><button class="button-lowi" id = "kb6" value = 6>Fi</button><button class="button-low" id = "kb7" value = 7>So</button><button class="button-lowi" id = "kb8" value = 8>Si</button><button class="button-low" id = "kb9" value = 9>La</button><button class="button-lowi" id = "kb10" value = 10>Li</button><button class="button-low"  id = "kb11" value = 11>Ti</button><br>
+	<button class="button-mid" id = "kb12" value = 12>Do</button><button class="button-midi" id = "kb13" value = 13>Di</button><button class="button-mid" id = "kb14" value = 14>Re</button><button class="button-midi" id = "kb15" value = 15>Ri</button><button class="button-mid" id = "kb16" value = 16>Mi</button><button class="button-mid" id = "kb17" value = 17>Fa</button><button class="button-midi" id = "kb18" value = 18>Fi</button><button class="button-mid" id = "kb19" value = 19>So</button><button class="button-midi" id = "kb20" value = 20>Si</button><button class="button-mid" id = "kb21" value = 21>La</button><button class="button-midi" id = "kb22" value = 22>Li</button><button class="button-mid" id = "kb23" value = 23>Ti</button><br>
+	<button class="button-high" id = "kb24" value = 24>Do</button><button class="button-highi" id = "kb25" value = 25>Di</button><button class="button-high" id = "kb26" value = 26>Re</button><button class="button-highi" id = "kb27" value = 27>Ri</button><button class="button-high" id = "kb28" value = 28>Mi</button><button class="button-high" id = "kb29" value = 29>Fa</button><button class="button-highi" id = "kb30" value = 30>Fi</button><button class="button-high" id = "kb31" value = 31>So</button><button class="button-highi" id = "kb32" value = 32>Si</button><button class="button-high" id = "kb33" value = 33>La</button><button class="button-highi" id = "kb34" value = 34>Li</button><button class="button-high" id = "kb35" value = 35>Ti</button><br><br><br>
+	
+	
 	<div id="playedAbsoluteKey"></div>
 	<div id="playedWhatKey"></div>
 	<br>
-	<button id="chordButton">Show Chords Table</button>
+	<button class = "button-outline" id="chordButton">Show Chords Table</button>
 	
 	<div id="chordTutorial"></div>
 	<p id="note">Note: The chord names and symbols are used in popular music, which may be different in classical music. <p>
@@ -127,13 +183,12 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="loader.js" type="text/javascript"></script>
-<script src="./js/midi/plugin.webaudio.js" type="text/javascript"></script>
 <script src="chord.jsonp"></script>	
 <script>
 	
 $(document).ready(function(){
 
+	var isKeyLayoutShown = false;
 	var keyEnabledArray = Array(222).fill(true);
 
 	var sources = ["notes/C2.mp3", "notes/Db2.mp3", "notes/D2.mp3", "notes/Eb2.mp3", "notes/E2.mp3", "notes/F2.mp3", "notes/Gb2.mp3", "notes/G2.mp3", "notes/Ab2.mp3", "notes/A2.mp3", "notes/Bb2.mp3", "notes/B2.mp3", "notes/C3.mp3", "notes/Db3.mp3", "notes/D3.mp3", "notes/Eb3.mp3", "notes/E3.mp3", "notes/F3.mp3", "notes/Gb3.mp3", "notes/G3.mp3", "notes/Ab3.mp3", "notes/A3.mp3", "notes/Bb3.mp3", "notes/B3.mp3", "notes/C4.mp3", "notes/Db4.mp3", "notes/D4.mp3", "notes/Eb4.mp3", "notes/E4.mp3", "notes/F4.mp3", "notes/Gb4.mp3", "notes/G4.mp3", "notes/Ab4.mp3", "notes/A4.mp3", "notes/Bb4.mp3", "notes/B4.mp3", "notes/C5.mp3", "notes/Db5.mp3", "notes/D5.mp3", "notes/Eb5.mp3", "notes/E5.mp3", "notes/F5.mp3", "notes/Gb5.mp3", "notes/G5.mp3", "notes/Ab5.mp3", "notes/A5.mp3", "notes/Bb5.mp3", "notes/B5.mp3", "notes/C6.mp3", "notes/Db6.mp3", "notes/D6.mp3", "notes/Eb6.mp3", "notes/E6.mp3", "notes/F6.mp3", "notes/Gb6.mp3", "notes/G6.mp3", "notes/Ab6.mp3", "notes/A6.mp3", "notes/Bb6.mp3", "notes/B6.mp3", "notes/C7.mp3"];
@@ -147,7 +202,10 @@ $(document).ready(function(){
 	$(document).keydown(keyPush);
 	$("#selectKey").change(keyPush);
 	$("#selectTone").change(keyPush);	
+	$("#selectTone").change(showLayout);
 	$("#selectMode").change(keyPush);
+	
+	
 	
 	
 	document.onkeydown = keyPush;
@@ -164,7 +222,141 @@ $(document).ready(function(){
 		initialPlay.play();
 	}
 	
+	$("#showKeyButton").click(showLayout);
 	
+	
+	function showLayout(evt) {
+		var selectTone = $("#selectTone").val();
+		var Layout = Number(selectTone);
+		if (evt.type == "click") {
+			if (isKeyLayoutShown == false) {
+			isKeyLayoutShown = true;
+			}
+			else {
+			isKeyLayoutShown = false;
+			}
+		}
+		console.log(Layout);
+		
+			if (isKeyLayoutShown == true) {
+				if (Layout == 1 || Layout == 2 || Layout == 3){
+					$("#kb0").text("q");
+					$("#kb1").text("Q");
+					$("#kb2").text("w");
+					$("#kb3").text("W");
+					$("#kb4").text("e");
+					$("#kb5").text("r");
+					$("#kb6").text("R");
+					$("#kb7").text("t");
+					$("#kb8").text("T");
+					$("#kb9").text("y");
+					$("#kb10").text("Y");
+					$("#kb11").text("u");
+					$("#kb12").text("a");
+					$("#kb13").text("A");
+					$("#kb14").text("s");
+					$("#kb15").text("S");
+					$("#kb16").text("d");
+					$("#kb17").text("f");
+					$("#kb18").text("F");
+					$("#kb19").text("g");
+					$("#kb20").text("G");
+					$("#kb21").text("h");
+					$("#kb22").text("H");
+					$("#kb23").text("j");
+					$("#kb24").text("z");
+					$("#kb25").text("Z");
+					$("#kb26").text("x");
+					$("#kb27").text("X");
+					$("#kb28").text("c");
+					$("#kb29").text("v");
+					$("#kb30").text("V");
+					$("#kb31").text("b");
+					$("#kb32").text("B");
+					$("#kb33").text("n");
+					$("#kb34").text("N");
+					$("#kb35").text("m");
+				}
+				if (Layout == 4){
+					$("#kb0").text("Do");
+					$("#kb1").text("Di");
+					$("#kb2").text("Re");
+					$("#kb3").text("Ri");
+					$("#kb4").text("Mi");
+					$("#kb5").text("Fa");
+					$("#kb6").text("Fi");
+					$("#kb7").text("So");
+					$("#kb8").text("Si");
+					$("#kb9").text("La");
+					$("#kb10").text("Li");
+					$("#kb11").text("Ti");
+					$("#kb12").text("a");
+					$("#kb13").text("w");
+					$("#kb14").text("s");
+					$("#kb15").text("e");
+					$("#kb16").text("d");
+					$("#kb17").text("f");
+					$("#kb18").text("t");
+					$("#kb19").text("g");
+					$("#kb20").text("y");
+					$("#kb21").text("h");
+					$("#kb22").text("u");
+					$("#kb23").text("j");
+					$("#kb24").text("k");
+					$("#kb25").text("o");
+					$("#kb26").text("l");
+					$("#kb27").text("p");
+					$("#kb28").text(";");
+					$("#kb29").text("'");
+					$("#kb30").text("Fi");
+					$("#kb31").text("So");
+					$("#kb32").text("Si");
+					$("#kb33").text("La");
+					$("#kb34").text("Li");
+					$("#kb35").text("Ti");
+				}
+				$("#showKeyButton").text("Hide Keys Layout");
+			}
+			else {
+				$("#kb0").text("Do");
+				$("#kb1").text("Di");
+				$("#kb2").text("Re");
+				$("#kb3").text("Ri");
+				$("#kb4").text("Mi");
+				$("#kb5").text("Fa");
+				$("#kb6").text("Fi");
+				$("#kb7").text("So");
+				$("#kb8").text("Si");
+				$("#kb9").text("La");
+				$("#kb10").text("Li");
+				$("#kb11").text("Ti");
+				$("#kb12").text("Do");
+				$("#kb13").text("Di");
+				$("#kb14").text("Re");
+				$("#kb15").text("Ri");
+				$("#kb16").text("Mi");
+				$("#kb17").text("Fa");
+				$("#kb18").text("Fi");
+				$("#kb19").text("So");
+				$("#kb20").text("Si");
+				$("#kb21").text("La");
+				$("#kb22").text("Li");
+				$("#kb23").text("Ti");
+				$("#kb24").text("Do");
+				$("#kb25").text("Di");
+				$("#kb26").text("Re");
+				$("#kb27").text("Ri");
+				$("#kb28").text("Mi");
+				$("#kb29").text("Fa");
+				$("#kb30").text("Fi");
+				$("#kb31").text("So");
+				$("#kb32").text("Si");
+				$("#kb33").text("La");
+				$("#kb34").text("Li");
+				$("#kb35").text("Ti");
+				$("#showKeyButton").text("Show Keys Layout");
+			}	
+	}
 	
 	$("#chordButton").click(function(){
 		
@@ -216,7 +408,7 @@ $(document).ready(function(){
 			
 			for (j = 0; j < 4; j++){
 				if (chord[i].pitchNo[j] != undefined) {
-					var chordId = i + j * 1000;
+					var chordId = i + j * 1000 + 1000;
 					chordContentFragments += "<td><button class = \"playChord\" value = " + chordId + ">Play</button></td>";
 					}
 				else {
@@ -232,6 +424,13 @@ $(document).ready(function(){
 	
 	$(".playChord").click(keyPush);
 	
+	$(".button-low").click(keyPush);
+	$(".button-lowi").click(keyPush);
+	$(".button-mid").click(keyPush);
+	$(".button-midi").click(keyPush);
+	$(".button-high").click(keyPush);
+	$(".button-highi").click(keyPush);
+	
 	function keyPush(evt){
 	
 		var selectkey = $("#selectKey").val();
@@ -240,7 +439,6 @@ $(document).ready(function(){
 		var Layout = Number(selectTone);
 		var selectmode = $("#selectMode").val();
 		$(this).blur();
-		console.log(key);
 		//Description
 		if (Layout == 1 || Layout == 2 || Layout == 3){
 			$("#tutorial").text("Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.");
@@ -296,7 +494,7 @@ $(document).ready(function(){
 						var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
 						var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘"];
 						}
-					if (evt.type != "click"){
+					if (evt.type != "click" || evt.type == "click" && chordToPlay < 36){
 					$("#playedAbsoluteKey").text(playedAbsKey[au]);	
 					$("#playedWhatKey").text(solFaName[inputNumber]);
 						}
@@ -404,26 +602,38 @@ $(document).ready(function(){
 			
 		//end of pressing key
 		
-		//Play Chord by pressing button
+		
+		//Play Sound by pressing button
+		
+		var chordToPlay = $(this).val();
+		
 		if (evt.type == "click"){
-			var chordToPlay = $(this).val();
+			
+			noteToPlay = Number(chordToPlay);
 			console.log(chordToPlay);
 			
-			if (chordToPlay < 1000){
-				for (var k = 0; k < chord[chordToPlay].pitchNo.length; k++){
-					play(chord[chordToPlay].pitchNo[k] + 12);
-					}
-				}
+			//Play single note
+			if (chordToPlay < 36){
+				play(noteToPlay);
+			}
+			
+			//Play The Chords
 			if (chordToPlay > 999 && chordToPlay < 2000){
 				var realChord = chordToPlay - 1000;
+				for (var k = 0; k < chord[realChord].pitchNo.length; k++){
+					play(chord[realChord].pitchNo[k] + 12);
+					}
+				}
+			if (chordToPlay > 1999 && chordToPlay < 3000){
+				var realChord = chordToPlay - 2000;
 				play(chord[realChord].pitchNo[0] + 24);
 				for (var k = 1; k < chord[realChord].pitchNo.length; k++){
 					play(chord[realChord].pitchNo[k] + 12);
 					}
 				
 				}
-			if (chordToPlay > 1999 && chordToPlay < 3000){
-				var realChord = chordToPlay - 2000;
+			if (chordToPlay > 2999 && chordToPlay < 4000){
+				var realChord = chordToPlay - 3000;
 				for (var k = 0; k < 2; k++){
 					play(chord[realChord].pitchNo[k] + 24);
 					}
@@ -431,8 +641,8 @@ $(document).ready(function(){
 					play(chord[realChord].pitchNo[k] + 12);
 					}
 				}
-			if (chordToPlay > 2999 && chordToPlay < 4000){
-				var realChord = chordToPlay - 3000;
+			if (chordToPlay > 3999 && chordToPlay < 5000){
+				var realChord = chordToPlay - 4000;
 				for (var k = 0; k < 3; k++){
 					play(chord[realChord].pitchNo[k] + 24);
 					}
