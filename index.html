@@ -20,8 +20,10 @@
 			src: url(Signika-Semibold.ttf) format("truetype");
 			}
 		#content {
-			width: 900px;
-			margin: auto;
+			width: 1024px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 50px;
 			}
 		#playedWhatKey {
 			font-size: 36px;
@@ -38,6 +40,7 @@
 			font-family: "Signika-Semibold", Arial, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
 			}
 		#chordTutorial {
+			font-size:18px;
 			display: none;
 			}
 		#note {
@@ -64,7 +67,6 @@
 	
 <body>
 <div id="content">
-	<br>
 	<p> Welcome to GdPiano, a simple and fun music instrument played with relative pitch.<br>
 	</p>
 	
@@ -125,6 +127,8 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="loader.js" type="text/javascript"></script>
+<script src="./js/midi/plugin.webaudio.js" type="text/javascript"></script>
 <script src="chord.jsonp"></script>	
 <script>
 	
@@ -180,7 +184,7 @@ $(document).ready(function(){
 	var chordContent = document.getElementById("chordTutorial");
 	var chordContentFragments;
 	
-	chordContentFragments = "<table><thead><tr><th>Chord</th><th>Notation</th><th>Pitchs</th><th>Piano-like Layout Keys</th><th>Play</th></tr></thead><tbody>";
+	chordContentFragments = "<table><thead><tr><th>Chord</th><th>Notation</th><th>Pitchs</th><th>Piano-like Layout</th><th>Root Position</th><th>First Inversion</th><th>Second Inversion</th><th>Third Inversion</th></tr></thead><tbody>";
 	for (var i = 0; i < chord.length; i++){
 			chordContentFragments += "<tr><td>" + chord[i].name + "</td><td>" + chord[i].notation + "</td>";
 			chordContentFragments += "<td>";
@@ -208,7 +212,18 @@ $(document).ready(function(){
 				}
 			
 			chordContentFragments += "</td>";
-			chordContentFragments += "<td><button class = \"playChord\" value = " + i + ">Play</button></td>";
+			//chordContentFragments += "<td><button class = \"playChord\" value = " + i + ">Play</button></td>";
+			
+			for (j = 0; j < 4; j++){
+				if (chord[i].pitchNo[j] != undefined) {
+					var chordId = i + j * 1000;
+					chordContentFragments += "<td><button class = \"playChord\" value = " + chordId + ">Play</button></td>";
+					}
+				else {
+					chordContentFragments += "<td>N/A</td>";
+					}
+				}
+			
 			chordContentFragments += "</tr>";
 			}
 		chordContentFragments += "</tbody></table>";
@@ -281,8 +296,10 @@ $(document).ready(function(){
 						var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
 						var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘"];
 						}
-				$("#playedAbsoluteKey").text(playedAbsKey[au]);	
-				$("#playedWhatKey").text(solFaName[inputNumber]);	
+					if (evt.type != "click"){
+					$("#playedAbsoluteKey").text(playedAbsKey[au]);	
+					$("#playedWhatKey").text(solFaName[inputNumber]);
+						}
 				}
 			
 			//start of pressing key
@@ -391,8 +408,37 @@ $(document).ready(function(){
 		if (evt.type == "click"){
 			var chordToPlay = $(this).val();
 			console.log(chordToPlay);
-			for (var k = 0; k < chord[chordToPlay].pitchNo.length; k++){
-				play(chord[chordToPlay].pitchNo[k] + 12);
+			
+			if (chordToPlay < 1000){
+				for (var k = 0; k < chord[chordToPlay].pitchNo.length; k++){
+					play(chord[chordToPlay].pitchNo[k] + 12);
+					}
+				}
+			if (chordToPlay > 999 && chordToPlay < 2000){
+				var realChord = chordToPlay - 1000;
+				play(chord[realChord].pitchNo[0] + 24);
+				for (var k = 1; k < chord[realChord].pitchNo.length; k++){
+					play(chord[realChord].pitchNo[k] + 12);
+					}
+				
+				}
+			if (chordToPlay > 1999 && chordToPlay < 3000){
+				var realChord = chordToPlay - 2000;
+				for (var k = 0; k < 2; k++){
+					play(chord[realChord].pitchNo[k] + 24);
+					}
+				for (var k = 2; k < chord[realChord].pitchNo.length; k++){
+					play(chord[realChord].pitchNo[k] + 12);
+					}
+				}
+			if (chordToPlay > 2999 && chordToPlay < 4000){
+				var realChord = chordToPlay - 3000;
+				for (var k = 0; k < 3; k++){
+					play(chord[realChord].pitchNo[k] + 24);
+					}
+				for (var k = 3; k < chord[realChord].pitchNo.length; k++){
+					play(chord[realChord].pitchNo[k] + 12);
+					}
 				}
 			}
 		//End of Play Chord by pressing button
