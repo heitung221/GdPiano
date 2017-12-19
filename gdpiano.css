@@ -1,0 +1,112 @@
+@font-face {
+			font-family: "Signika";
+			src: url(Signika.ttf) format("truetype");
+			}
+		@font-face {
+			font-family: "Signika-Semibold";
+			src: url(Signika-Semibold.ttf) format("truetype");
+			}
+		.button-low {
+			background-color: MediumVioletRed;
+			border-color: MediumVioletRed;
+			text-transform: none;
+			font-size: 16px;
+			width: 100px;
+			padding: 0 0;
+		}
+		.button-lowi {
+			background-color: LimeGreen;
+			border-color: LimeGreen;
+			text-transform: none;
+			font-size: 16px;
+			width: 60px;
+			padding: 0 0;
+		}
+		.button-mid {
+			background-color: PaleVioletRed;
+			border-color: PaleVioletRed;
+			text-transform: none;
+			font-size: 16px;
+			width: 100px;
+			padding: 0 0;
+		}
+		.button-midi {
+			background-color: tan;
+			border-color: tan;
+			text-transform: none;
+			font-size: 16px;
+			width: 60px;
+			padding: 0 0;
+		}
+		.button-high {
+			background-color: Pink;
+			border-color: Pink;
+			text-transform: none;
+			font-size: 16px;
+			width: 100px;
+			padding: 0 0;
+		}
+		.button-highi {
+			background-color: PaleGreen;
+			border-color: PaleGreen;
+			text-transform: none;
+			font-size: 16px;
+			width: 60px;
+			padding: 0 0;
+		}
+		
+		#content {
+			width: 1024px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 50px;
+			}
+		#playedWhatKey {
+			font-size: 36px;
+			font-weight: bold;
+			color: indigo;
+			background-color: beige;
+			text-align: center;
+			font-family: "Signika-Semibold", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			}
+		#playedAbsoluteKey {
+			font-size: 36px;
+			font-weight: bold;
+			color: indianred;
+			background-color: beige;
+			text-align: center;
+			font-family: "Signika-Semibold", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+			}
+		#chordTutorial {
+			font-size:18px;
+			display: none;
+			}
+		#note {
+			font-size: 16px;
+		}
+		#easterEgg {
+			font-size: 14px;
+		}
+		#selectMode {
+			height: 2.7rem;
+			font-size: 14px;
+		}
+		#version {
+			font-size: 14px;
+		}
+        body {
+			font-size: 22px;
+			font-family: "Signika", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+            }	
+		p {
+			width: 500;
+			word-wrap: break-word;
+			}
+		button {
+			font-size: 14px;
+			}
+		select {
+			width: 275px;
+			margin: left;
+			font-family: "Signika", Roboto, "Microsoft JhengHei", "微軟正黑體", "SimHei", "STHeiti", sans-serif;
+		}

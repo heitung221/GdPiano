@@ -14,7 +14,7 @@ chords = [
 	{"name": "Minor 7th", "notation": "m7", "pitchNo":[0,3,7,10], "type": 7},
 	{"name": "Augmented 7th", "notation": "aug7", "pitchNo":[0,4,8,10], "type": 7},
 	{"name": "Diminished 7th", "notation": "dim7", "pitchNo":[0,3,6,9], "type": 7},
-	{"name": "Half diminished 7th", "notation": "ø", "pitchNo":[0,3,6,10], "type": 7},
+	{"name": "Half diminished 7th", "notation": "m7♭5", "pitchNo":[0,3,6,10], "type": 7},
 	{"name": "Minor-major 7th", "notation": "mM7", "pitchNo":[0,3,7,11], "type": 7},
 	{"name": "Augmented major 7th", "notation": "augM7", "pitchNo":[0,4,8,11], "type": 7},
 	{"name": "Diminished major 7th", "notation": "mM7♭5", "pitchNo":[0,3,6,11], "type": 7},
