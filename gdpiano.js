@@ -1,7 +1,7 @@
 	
 $(document).ready(function(){
 	
-	var currentVersion = "1.12";
+	var currentVersion = "2.0";
 	
 	//Generate the texts
 	var textsPart1 = "<p> Welcome to GdPiano, a simple and fun music instrument played with relative pitch.<br></p><p id=\"tutorial\">Instruction: Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p><p id=\"tutorial2\">Use Piano-like Layout Mode to enjoy playing chords!</p>";
@@ -336,15 +336,23 @@ $(document).ready(function(){
 		
 				function play(inputNumber){
 					var au = Dol + inputNumber;
+					/*
 					var sound = new Audio(sources[au]); //may need to change
 					sound.play();
+					*/
+					
+					var note = ["C2","C#2","D2","D#2","E2","F2","F#2","G2","G#2","A2","A#2","B2","C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3","C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4","C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5","C6","C#6","D6","D#6","E6","F6","F#6","G6","G#6","A6","A#6","B6","C7","C#7","D7","D#7","E7","F7","F#7","G7","G#7","A7","A#7","B7","C8"];
+					
+					sources.triggerAttack(note[au]);
+					
+					
 					if (selectmode == "NormalMode"){
 						var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
-						var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C"];
+						var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C"];
 						}
 					else if (selectmode == "JyutKukMode"){
 						var solFaName = ["仩 saang3","Di","伬 ce1","Ri","仜 gung1","仮 faan1","Fi","合 ho4","Si","士 si6","Li","乙 ji6","上 saang3","Di","尺 ce1","Ri","工 gung1","反 faan1","Fi","六 liu1","Si","五 wu1","Li","彳乙 ji6","生 saang3","Di","彳尺 ce1","Ri","彳工 gung1","彳反 faan1","Fi","彳六 liu1","Si","彳五 wu1","Li","Ti"];
-						var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘"];
+						var playedAbsKey = ["黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘","大呂","太簇","夾鐘","姑冼","仲呂","蕤賓","林鐘","夷則","南呂","無射","應鐘","黃鐘"];
 						}
 					if (evt.type != "click" || evt.type == "click" && chordToPlay < 36){
 					$("#playedAbsoluteKey").html("<br>" + playedAbsKey[au]);
