@@ -25,6 +25,38 @@
 <script src="instrument.jsonp"></script>
 <script src="gdpiano.js"></script>	
 <script>
-var sources = ["notes/C2.mp3", "notes/Db2.mp3", "notes/D2.mp3", "notes/Eb2.mp3", "notes/E2.mp3", "notes/F2.mp3", "notes/Gb2.mp3", "notes/G2.mp3", "notes/Ab2.mp3", "notes/A2.mp3", "notes/Bb2.mp3", "notes/B2.mp3", "notes/C3.mp3", "notes/Db3.mp3", "notes/D3.mp3", "notes/Eb3.mp3", "notes/E3.mp3", "notes/F3.mp3", "notes/Gb3.mp3", "notes/G3.mp3", "notes/Ab3.mp3", "notes/A3.mp3", "notes/Bb3.mp3", "notes/B3.mp3", "notes/C4.mp3", "notes/Db4.mp3", "notes/D4.mp3", "notes/Eb4.mp3", "notes/E4.mp3", "notes/F4.mp3", "notes/Gb4.mp3", "notes/G4.mp3", "notes/Ab4.mp3", "notes/A4.mp3", "notes/Bb4.mp3", "notes/B4.mp3", "notes/C5.mp3", "notes/Db5.mp3", "notes/D5.mp3", "notes/Eb5.mp3", "notes/E5.mp3", "notes/F5.mp3", "notes/Gb5.mp3", "notes/G5.mp3", "notes/Ab5.mp3", "notes/A5.mp3", "notes/Bb5.mp3", "notes/B5.mp3", "notes/C6.mp3", "notes/Db6.mp3", "notes/D6.mp3", "notes/Eb6.mp3", "notes/E6.mp3", "notes/F6.mp3", "notes/Gb6.mp3", "notes/G6.mp3", "notes/Ab6.mp3", "notes/A6.mp3", "notes/Bb6.mp3", "notes/B6.mp3", "notes/C7.mp3"];
+
+var sources = new Tone.Sampler({
+
+				'A#2' : 'A#2.mp3',
+				'A#3' : 'A#3.mp3',
+				'A3' : 'A3.mp3',
+				'B3' : 'B3.mp3',
+				'C#3' : 'C#3.mp3',
+				'C#4' : 'C#4.mp3',
+				'C#5' : 'C#5.mp3',
+				'C4' : 'C4.mp3',
+				'C5' : 'C5.mp3',
+				'C6' : 'C6.mp3',
+				'D#3' : 'D#3.mp3',
+				'D#4' : 'D#4.mp3',
+				'D3' : 'D3.mp3',
+				'D4' : 'D4.mp3',
+				'E2' : 'E2.mp3',
+				'E3' : 'E3.mp3',
+				'F#3' : 'F#3.mp3',
+				'F2' : 'F2.mp3',
+				'F3' : 'F3.mp3',
+				'G#2' : 'G#2.mp3',
+				'G#3' : 'G#3.mp3',
+				'G2' : 'G2.mp3',
+				'G3' : 'G3.mp3'
+				
+				
+			}, {
+				'release' : 1,
+				'baseUrl' : 'https://raw.githubusercontent.com/heitung221/gdpiano/master/samples/guitar/'
+			}).toMaster();
+
 </script>
 </html>
