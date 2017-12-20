@@ -1,5 +1,6 @@
 instruments = [
-	{"name":"Piano", "value":"index"},
+	{"name":"Grand Piano", "value":"index"},
 	{"name":"Guitar", "value":"guitar"},
-	{"name":"Flute", "value":"flute"}
+	{"name":"Flute", "value":"flute"},
+	{"name":"Erhu", "value":"erhu"}
 ]
