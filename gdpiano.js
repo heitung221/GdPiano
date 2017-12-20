@@ -1,7 +1,7 @@
 	
 $(document).ready(function(){
 	
-	var currentVersion = "2.0";
+	var currentVersion = "2.0-beta3";
 	
 	//Generate the texts
 	var textsPart1 = "<p> Welcome to GdPiano, a simple and fun music instrument played with relative pitch.<br></p><p id=\"tutorial\">Instruction: Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p><p id=\"tutorial2\">Use Piano-like Layout Mode to enjoy playing chords!</p>";
