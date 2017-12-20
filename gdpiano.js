@@ -1,7 +1,7 @@
 	
 $(document).ready(function(){
 	
-	var currentVersion = "2.0-beta3";
+	var currentVersion = "2.0-beta4";
 	
 	//Generate the texts
 	var textsPart1 = "<p> Welcome to GdPiano, a simple and fun music instrument played with relative pitch.<br></p><p id=\"tutorial\">Instruction: Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p><p id=\"tutorial2\">Use Piano-like Layout Mode to enjoy playing chords!</p>";
@@ -35,6 +35,7 @@ $(document).ready(function(){
 	var whichInstrument = instruments;
 	
 	$(document).keydown(keyPush);
+	$(document).keyup(keyPush);
 	$("#selectKey").change(keyPush);
 	$("#selectTone").change(keyPush);	
 	$("#selectTone").change(showLayout);
@@ -276,12 +277,18 @@ $(document).ready(function(){
 	
 	$(".playChord").click(keyPush);
 	
-	$(".button-low").click(keyPush);
-	$(".button-lowi").click(keyPush);
-	$(".button-mid").click(keyPush);
-	$(".button-midi").click(keyPush);
-	$(".button-high").click(keyPush);
-	$(".button-highi").click(keyPush);
+	$(".button-low").mousedown(keyPush);
+	$(".button-lowi").mousedown(keyPush);
+	$(".button-mid").mousedown(keyPush);
+	$(".button-midi").mousedown(keyPush);
+	$(".button-high").mousedown(keyPush);
+	$(".button-highi").mousedown(keyPush);
+	$(".button-low").mouseup(keyPush);
+	$(".button-lowi").mouseup(keyPush);
+	$(".button-mid").mouseup(keyPush);
+	$(".button-midi").mouseup(keyPush);
+	$(".button-high").mouseup(keyPush);
+	$(".button-highi").mouseup(keyPush);
 	
 	function keyPush(evt){
 	
@@ -335,16 +342,12 @@ $(document).ready(function(){
 		
 		
 				function play(inputNumber){
+					
 					var au = Dol + inputNumber;
-					/*
-					var sound = new Audio(sources[au]); //may need to change
-					sound.play();
-					*/
 					
 					var note = ["C2","C#2","D2","D#2","E2","F2","F#2","G2","G#2","A2","A#2","B2","C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3","C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4","C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5","C6","C#6","D6","D#6","E6","F6","F#6","G6","G#6","A6","A#6","B6","C7","C#7","D7","D#7","E7","F7","F#7","G7","G#7","A7","A#7","B7","C8"];
 					
 					sources.triggerAttack(note[au]);
-					
 					
 					if (selectmode == "NormalMode"){
 						var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
@@ -364,10 +367,8 @@ $(document).ready(function(){
 			// disable the key until key release
 			//ref: https://stackoverflow.com/questions/6087959/
 		if (keyEnabledArray[evt.keyCode]) {
+		if (evt.type == "keydown") { 
 			keyEnabledArray[evt.keyCode] = false;
-			
-			
-
 			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
 				if (evt.shiftKey == false){
@@ -459,23 +460,118 @@ $(document).ready(function(){
 					if (evt.keyCode == 222)	play(26);
 				}
 			}
-			
+		}	
 		//end of pressing key
+		
+				//Stop
+					function stopPlay(inputNumber){
+				
+						var au = Dol + inputNumber;
+					
+						var note = ["C2","C#2","D2","D#2","E2","F2","F#2","G2","G#2","A2","A#2","B2","C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3","C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4","C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5","C6","C#6","D6","D#6","E6","F6","F#6","G6","G#6","A6","A#6","B6","C7","C#7","D7","D#7","E7","F7","F#7","G7","G#7","A7","A#7","B7","C8"];
+						
+						sources.triggerRelease(note[au]);	
+					}
+				//End of Stop					
+					
+		//Start of keyup and stop 					
+		if (evt.type == "keyup") {
+			
+			
+			if (Layout == 1 || Layout == 2 || Layout == 3){
+				if (evt.shiftKey == false){
+					if (evt.keyCode == 81)	stopPlay(0);
+					if (evt.keyCode == 87)	stopPlay(2);
+					if (evt.keyCode == 69)	stopPlay(4);
+					if (evt.keyCode == 82)	stopPlay(5);
+					if (evt.keyCode == 84)	stopPlay(7);
+					if (evt.keyCode == 89)	stopPlay(9);
+					if (evt.keyCode == 85)	stopPlay(11);
+					if (evt.keyCode == 65)	stopPlay(12);
+					if (evt.keyCode == 83)	stopPlay(14);
+					if (evt.keyCode == 68)	stopPlay(16);
+					if (evt.keyCode == 70)	stopPlay(17);
+					if (evt.keyCode == 71)	stopPlay(19);
+					if (evt.keyCode == 72)	stopPlay(21);
+					if (evt.keyCode == 74)	stopPlay(23);
+					if (evt.keyCode == 90)	stopPlay(24);
+					if (evt.keyCode == 88)	stopPlay(26);
+					if (evt.keyCode == 67)	stopPlay(28);
+					if (evt.keyCode == 86)	stopPlay(29);
+					if (evt.keyCode == 66)	stopPlay(31);
+					if (evt.keyCode == 78)	stopPlay(33);
+					if (evt.keyCode == 77)	stopPlay(35);
+					}
+				else {
+					if (evt.keyCode == 81)	stopPlay(1);
+					if (evt.keyCode == 87)	stopPlay(3);
+					if (evt.keyCode == 82)	stopPlay(6);
+					if (evt.keyCode == 84)	stopPlay(8);
+					if (evt.keyCode == 89)	stopPlay(10);
+					if (evt.keyCode == 65)	stopPlay(13);
+					if (evt.keyCode == 83)	stopPlay(15);
+					if (evt.keyCode == 70)	stopPlay(18);
+					if (evt.keyCode == 71)	stopPlay(20);
+					if (evt.keyCode == 72)	stopPlay(22);
+					if (evt.keyCode == 90)	stopPlay(25);
+					if (evt.keyCode == 88)	stopPlay(27);
+					if (evt.keyCode == 86)	stopPlay(30);
+					if (evt.keyCode == 66)	stopPlay(32);
+					if (evt.keyCode == 78)	stopPlay(34);
+					if (evt.keyCode == 77)	stopPlay(36);
+					}
+					
+				}
+				
+			else if (Layout == 4){
+					if (evt.keyCode == 65)	stopPlay(12);
+					if (evt.keyCode == 87)	stopPlay(13);
+					if (evt.keyCode == 83)	stopPlay(14);
+					if (evt.keyCode == 69)	stopPlay(15);
+					if (evt.keyCode == 68)	stopPlay(16);
+					if (evt.keyCode == 70)	stopPlay(17);
+					if (evt.keyCode == 84)	stopPlay(18);
+					if (evt.keyCode == 71)	stopPlay(19);
+					if (evt.keyCode == 89)	stopPlay(20);
+					if (evt.keyCode == 72)	stopPlay(21);
+					if (evt.keyCode == 85)	stopPlay(22);
+					if (evt.keyCode == 74)	stopPlay(23);
+					if (evt.keyCode == 75)	stopPlay(24);
+					if (evt.keyCode == 79)	stopPlay(25);
+					if (evt.keyCode == 76)	stopPlay(26);
+					if (evt.keyCode == 80)	stopPlay(27);
+					if (evt.keyCode == 186)	stopPlay(28);
+					if (evt.keyCode == 222)	stopPlay(29);
+				}
+			}
+		//End of keyup and stop 		
+		
 		
 		
 		//Play Sound by pressing button
 		
 		var chordToPlay = $(this).val();
+		var noteToPlay = Number(chordToPlay);
+		//Play single note
 		
-		if (evt.type == "click"){
-			
-			noteToPlay = Number(chordToPlay);
-			console.log(chordToPlay);
-			
-			//Play single note
+		if (evt.type == "mousedown"){
 			if (chordToPlay < 36){
 				play(noteToPlay);
 			}
+		}
+		
+		if (evt.type == "mouseup"){
+			if (chordToPlay < 36){
+				stopPlay(noteToPlay);
+			}
+		}
+		
+		if (evt.type == "click"){
+			
+			
+			console.log(chordToPlay);
+			
+			
 			
 			//Play The Chords
 			if (chordToPlay > 999 && chordToPlay < 2000){
