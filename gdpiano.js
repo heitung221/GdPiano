@@ -1,7 +1,7 @@
-﻿	
+	
 $(document).ready(function(){
 	
-	var currentVersion = "2.0-beta6";
+	var currentVersion = "2.0-beta7";
 	
 	//Generate the texts
 	var textsPart1 = "<p> Welcome to GdPiano, a simple and fun music instrument played with relative pitch.<br></p><p id=\"tutorial\">Instruction: Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p><p id=\"tutorial2\">Use Piano-like Layout Mode to enjoy playing chords!</p>";
@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 	
 	
-	var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
+	var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
 	
 	var keyPiano = ["a","w","s","e","d","f","t","g","y","h","u","j","k","o","l","p",";","\'"];
 	
@@ -328,7 +328,7 @@ $(document).ready(function(){
 		}
 		
 		//Assign key and tone
-		if (Layout == 1 || Layout == 4 || Layout == 5 || Layout == 11){
+		if (Layout == 1 || Layout == 5 || Layout == 11){
 					Dol = key + 13 - 1;
 				}
 			
@@ -336,7 +336,7 @@ $(document).ready(function(){
 					Dol = key + 25 - 1;
 				}
 			
-		if (Layout == 3 || Layout == 13){
+		if (Layout == 3 || Layout == 4 || Layout == 13){
 					Dol = key + 1 - 1;
 				}
 		
@@ -350,7 +350,7 @@ $(document).ready(function(){
 					sources.triggerAttack(note[au]);
 					
 					if (selectmode == "NormalMode"){
-						var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
+						var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
 						var playedAbsKey = ["C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C","C♯ / D♭","D","D♯ / E♭","E","F","F♯ / G♭","G","G♯ / A♭","A","A♯ / B♭","B","C"];
 						}
 					else if (selectmode == "JyutKukMode"){
@@ -369,6 +369,32 @@ $(document).ready(function(){
 		if (keyEnabledArray[evt.keyCode]) {
 		if (evt.type == "keydown") { 
 			keyEnabledArray[evt.keyCode] = false;
+			
+			if (evt.keyCode == 37 || evt.keyCode == 38 || evt.keyCode == 39 || evt.keyCode == 40){
+			evt.preventDefault();
+			}
+			
+			if (evt.keyCode == 97)	play(12+12);
+			if (evt.keyCode == 98)	play(14+12);
+			if (evt.keyCode == 99)	play(16+12);
+			if (evt.keyCode == 100)	play(17+12);
+			if (evt.keyCode == 101)	play(19+12);
+			if (evt.keyCode == 102)	play(21+12);
+			if (evt.keyCode == 107)	play(23+12);
+			if (evt.keyCode == 103)	play(24+12);
+			if (evt.keyCode == 104)	play(26+12);
+			if (evt.keyCode == 105)	play(28+12);
+			if (evt.keyCode == 111)	play(29+12);
+			if (evt.keyCode == 106)	play(31+12);
+			if (evt.keyCode == 109)	play(33+12);
+			if (evt.keyCode == 110)	play(11+12);
+			if (evt.keyCode == 96)	play(9+12);
+			if (evt.keyCode == 39)	play(7+12);
+			if (evt.keyCode == 40)	play(5+12);
+			if (evt.keyCode == 38)	play(4+12);
+			if (evt.keyCode == 37)	play(2+12);
+			if (evt.keyCode == 17)	play(0+12);
+			
 			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
 				if (evt.shiftKey == false){
@@ -393,10 +419,7 @@ $(document).ready(function(){
 					if (evt.keyCode == 66)	play(31);
 					if (evt.keyCode == 78)	play(33);
 					if (evt.keyCode == 77)	play(35);
-					if (evt.keyCode == 17)	{
-						var sound = new Audio("notes/C4.mp3");
-						sound.play();
-						}
+					
 					}
 				else {
 					if (evt.keyCode == 81)	play(1);
@@ -477,6 +500,26 @@ $(document).ready(function(){
 		//Start of keyup and stop 					
 		if (evt.type == "keyup") {
 			
+			if (evt.keyCode == 97)	stopPlay(12+12);
+			if (evt.keyCode == 98)	stopPlay(14+12);
+			if (evt.keyCode == 99)	stopPlay(16+12);
+			if (evt.keyCode == 100)	stopPlay(17+12);
+			if (evt.keyCode == 101)	stopPlay(19+12);
+			if (evt.keyCode == 102)	stopPlay(21+12);
+			if (evt.keyCode == 107)	stopPlay(23+12);
+			if (evt.keyCode == 103)	stopPlay(24+12);
+			if (evt.keyCode == 104)	stopPlay(26+12);
+			if (evt.keyCode == 105)	stopPlay(28+12);
+			if (evt.keyCode == 111)	stopPlay(29+12);
+			if (evt.keyCode == 106)	stopPlay(31+12);
+			if (evt.keyCode == 109)	stopPlay(33+12);
+			if (evt.keyCode == 110)	stopPlay(11+12);
+			if (evt.keyCode == 96)	stopPlay(9+12);
+			if (evt.keyCode == 39)	stopPlay(7+12);
+			if (evt.keyCode == 40)	stopPlay(5+12);
+			if (evt.keyCode == 38)	stopPlay(4+12);
+			if (evt.keyCode == 37)	stopPlay(2+12);
+			if (evt.keyCode == 17)	stopPlay(0+12);
 			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
 				if (evt.shiftKey == false){
