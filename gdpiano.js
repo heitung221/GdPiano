@@ -1,7 +1,7 @@
 	
 $(document).ready(function(){
 	
-	var currentVersion = "2.0-beta7";
+	var currentVersion = "2.0";
 	
 	//Generate the texts
 	var textsPart1 = "<p> Welcome to GdPiano, a simple and fun music instrument played with relative pitch.<br></p><p id=\"tutorial\">Instruction: Press A to play Do, press S to play Re, press D to play Mi, and etc. Press Shift + A to play the key between Do and Re, press Shift + S to play the key between Re and Mi, and etc. You can always play middle C by pressing LCtrl.</p><p id=\"tutorial2\">Use Piano-like Layout Mode to enjoy playing chords!</p>";
@@ -21,10 +21,8 @@ $(document).ready(function(){
 	
 	
 
-	var isKeyLayoutShown = false;
+	var whichKeyLayoutShown = 0;
 	var keyEnabledArray = Array(222).fill(true);
-
-	
 	
 	var solFaName = ["Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti","Do","Di","Re","Ri","Mi","Fa","Fi","Sol","Si","La","Li","Ti"];
 	
@@ -81,16 +79,18 @@ $(document).ready(function(){
 		var selectTone = $("#selectTone").val();
 		var Layout = Number(selectTone);
 		if (evt.type == "click") {
-			if (isKeyLayoutShown == false) {
-			isKeyLayoutShown = true;
+			if (whichKeyLayoutShown == 1) {
+			whichKeyLayoutShown = 2;
+			}
+			else if (whichKeyLayoutShown == 0) {
+			whichKeyLayoutShown = 1;
 			}
 			else {
-			isKeyLayoutShown = false;
+			whichKeyLayoutShown = 0;
 			}
 		}
-		console.log(Layout);
 		
-			if (isKeyLayoutShown == true) {
+			if (whichKeyLayoutShown == 1) {
 				if (Layout == 1 || Layout == 2 || Layout == 3){
 					$("#kb0").text("q");
 					$("#kb1").text("Q");
@@ -167,7 +167,46 @@ $(document).ready(function(){
 					$("#kb34").text("Li");
 					$("#kb35").text("Ti");
 				}
-				$("#showKeyButton").text("Hide Keys Layout");
+				$("#showKeyButton").text("Show Numpad Layout");
+			}
+			else if (whichKeyLayoutShown == 2){
+				$("#kb0").text("Ctrl");
+					$("#kb1").text("Di");
+					$("#kb2").text("Left");
+					$("#kb3").text("Ri");
+					$("#kb4").text("Up");
+					$("#kb5").text("Down");
+					$("#kb6").text("Fi");
+					$("#kb7").text("Right");
+					$("#kb8").text("Si");
+					$("#kb9").text("0");
+					$("#kb10").text("Li");
+					$("#kb11").text(".");
+					$("#kb12").text("1");
+					$("#kb13").text("Di");
+					$("#kb14").text("2");
+					$("#kb15").text("Ri");
+					$("#kb16").text("3");
+					$("#kb17").text("4");
+					$("#kb18").text("Fi");
+					$("#kb19").text("5");
+					$("#kb20").text("Si");
+					$("#kb21").text("6");
+					$("#kb22").text("Li");
+					$("#kb23").text("+");
+					$("#kb24").text("7");
+					$("#kb25").text("Di");
+					$("#kb26").text("8");
+					$("#kb27").text("Ri");
+					$("#kb28").text("9");
+					$("#kb29").text("/");
+					$("#kb30").text("Fi");
+					$("#kb31").text("*");
+					$("#kb32").text("Si");
+					$("#kb33").text("-");
+					$("#kb34").text("Li");
+					$("#kb35").text("Ti");
+					$("#showKeyButton").text("Show Sol-fa Name");
 			}
 			else {
 				$("#kb0").text("Do");
@@ -328,15 +367,15 @@ $(document).ready(function(){
 		}
 		
 		//Assign key and tone
-		if (Layout == 1 || Layout == 5 || Layout == 11){
+		if (Layout == 1 || Layout == 4){
 					Dol = key + 13 - 1;
 				}
 			
-		if (Layout == 2 || Layout == 12){
+		if (Layout == 2){
 					Dol = key + 25 - 1;
 				}
 			
-		if (Layout == 3 || Layout == 4 || Layout == 13){
+		if (Layout == 3){
 					Dol = key + 1 - 1;
 				}
 		
@@ -370,30 +409,28 @@ $(document).ready(function(){
 		if (evt.type == "keydown") { 
 			keyEnabledArray[evt.keyCode] = false;
 			
-			if (evt.keyCode == 37 || evt.keyCode == 38 || evt.keyCode == 39 || evt.keyCode == 40){
 			evt.preventDefault();
-			}
 			
-			if (evt.keyCode == 97)	play(12+12);
-			if (evt.keyCode == 98)	play(14+12);
-			if (evt.keyCode == 99)	play(16+12);
-			if (evt.keyCode == 100)	play(17+12);
-			if (evt.keyCode == 101)	play(19+12);
-			if (evt.keyCode == 102)	play(21+12);
-			if (evt.keyCode == 107)	play(23+12);
-			if (evt.keyCode == 103)	play(24+12);
-			if (evt.keyCode == 104)	play(26+12);
-			if (evt.keyCode == 105)	play(28+12);
-			if (evt.keyCode == 111)	play(29+12);
-			if (evt.keyCode == 106)	play(31+12);
-			if (evt.keyCode == 109)	play(33+12);
-			if (evt.keyCode == 110)	play(11+12);
-			if (evt.keyCode == 96)	play(9+12);
-			if (evt.keyCode == 39)	play(7+12);
-			if (evt.keyCode == 40)	play(5+12);
-			if (evt.keyCode == 38)	play(4+12);
-			if (evt.keyCode == 37)	play(2+12);
-			if (evt.keyCode == 17)	play(0+12);
+			if (evt.keyCode == 97)	play(12);
+			if (evt.keyCode == 98)	play(14);
+			if (evt.keyCode == 99)	play(16);
+			if (evt.keyCode == 100)	play(17);
+			if (evt.keyCode == 101)	play(19);
+			if (evt.keyCode == 102)	play(21);
+			if (evt.keyCode == 107)	play(23);
+			if (evt.keyCode == 103)	play(24);
+			if (evt.keyCode == 104)	play(26);
+			if (evt.keyCode == 105)	play(28);
+			if (evt.keyCode == 111)	play(29);
+			if (evt.keyCode == 106)	play(31);
+			if (evt.keyCode == 109)	play(33);
+			if (evt.keyCode == 110)	play(11);
+			if (evt.keyCode == 96)	play(9);
+			if (evt.keyCode == 39)	play(7);
+			if (evt.keyCode == 40)	play(5);
+			if (evt.keyCode == 38)	play(4);
+			if (evt.keyCode == 37)	play(2);
+			if (evt.keyCode == 17)	play(0);
 			
 			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
@@ -462,26 +499,6 @@ $(document).ready(function(){
 					if (evt.keyCode == 186)	play(28);
 					if (evt.keyCode == 222)	play(29);
 				}
-			else if (Layout == 5){
-					if (evt.keyCode == 65)	play(9);
-					if (evt.keyCode == 87)	play(10);
-					if (evt.keyCode == 83)	play(11);
-					if (evt.keyCode == 68)	play(12);
-					if (evt.keyCode == 82)	play(13);
-					if (evt.keyCode == 70)	play(14);
-					if (evt.keyCode == 84)	play(15);
-					if (evt.keyCode == 71)	play(16);
-					if (evt.keyCode == 72)	play(17);
-					if (evt.keyCode == 85)	play(18);
-					if (evt.keyCode == 74)	play(19);
-					if (evt.keyCode == 73)	play(20);
-					if (evt.keyCode == 75)	play(21);
-					if (evt.keyCode == 79)	play(22);
-					if (evt.keyCode == 76)	play(23);
-					if (evt.keyCode == 186)	play(24);
-					if (evt.keyCode == 219)	play(25);
-					if (evt.keyCode == 222)	play(26);
-				}
 			}
 		}	
 		//end of pressing key
@@ -500,26 +517,26 @@ $(document).ready(function(){
 		//Start of keyup and stop 					
 		if (evt.type == "keyup") {
 			
-			if (evt.keyCode == 97)	stopPlay(12+12);
-			if (evt.keyCode == 98)	stopPlay(14+12);
-			if (evt.keyCode == 99)	stopPlay(16+12);
-			if (evt.keyCode == 100)	stopPlay(17+12);
-			if (evt.keyCode == 101)	stopPlay(19+12);
-			if (evt.keyCode == 102)	stopPlay(21+12);
-			if (evt.keyCode == 107)	stopPlay(23+12);
-			if (evt.keyCode == 103)	stopPlay(24+12);
-			if (evt.keyCode == 104)	stopPlay(26+12);
-			if (evt.keyCode == 105)	stopPlay(28+12);
-			if (evt.keyCode == 111)	stopPlay(29+12);
-			if (evt.keyCode == 106)	stopPlay(31+12);
-			if (evt.keyCode == 109)	stopPlay(33+12);
-			if (evt.keyCode == 110)	stopPlay(11+12);
-			if (evt.keyCode == 96)	stopPlay(9+12);
-			if (evt.keyCode == 39)	stopPlay(7+12);
-			if (evt.keyCode == 40)	stopPlay(5+12);
-			if (evt.keyCode == 38)	stopPlay(4+12);
-			if (evt.keyCode == 37)	stopPlay(2+12);
-			if (evt.keyCode == 17)	stopPlay(0+12);
+			if (evt.keyCode == 97)	stopPlay(12);
+			if (evt.keyCode == 98)	stopPlay(14);
+			if (evt.keyCode == 99)	stopPlay(16);
+			if (evt.keyCode == 100)	stopPlay(17);
+			if (evt.keyCode == 101)	stopPlay(19);
+			if (evt.keyCode == 102)	stopPlay(21);
+			if (evt.keyCode == 107)	stopPlay(23);
+			if (evt.keyCode == 103)	stopPlay(24);
+			if (evt.keyCode == 104)	stopPlay(26);
+			if (evt.keyCode == 105)	stopPlay(28);
+			if (evt.keyCode == 111)	stopPlay(29);
+			if (evt.keyCode == 106)	stopPlay(31);
+			if (evt.keyCode == 109)	stopPlay(33);
+			if (evt.keyCode == 110)	stopPlay(11);
+			if (evt.keyCode == 96)	stopPlay(9);
+			if (evt.keyCode == 39)	stopPlay(7);
+			if (evt.keyCode == 40)	stopPlay(5);
+			if (evt.keyCode == 38)	stopPlay(4);
+			if (evt.keyCode == 37)	stopPlay(2);
+			if (evt.keyCode == 17)	stopPlay(0);
 			
 			if (Layout == 1 || Layout == 2 || Layout == 3){
 				if (evt.shiftKey == false){
