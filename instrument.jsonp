@@ -3,6 +3,7 @@ instruments = [
 	{"name":"Guitar", "value":"guitar"},
 	{"name":"Flute", "value":"flute"},
 	{"name":"Violin", "value":"violin"},
+	{"name":"Saxophone", "value":"sax"},
 	{"name":"二胡", "value":"erhu"},
 	{"name":"古箏", "value":"guzheng"}
 ]
